@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-class Feed extends Component {
-    constructor(props){
-        super(props)
-    }
-    
+class NewFeed extends Component {
     render() {
         return (
             <View>
-                <Text> Single feed update UI </Text>
+                <Text> Form for adding a new Feed update </Text>
             </View>
         )
     }
 }
 
-export default Feed
+export default NewFeed
