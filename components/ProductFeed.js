@@ -15,10 +15,12 @@ class ProductFeed extends Component {
 
     render() {
         return (
-            <View>
-                <Text> List of products passed as props.product_list //screenProps.product_list </Text>
-            </View>
-            <ProductDetail />
+            <>
+                <View>
+                    <Text> List of products passed as props.product_list //screenProps.product_list </Text>
+                </View>
+                <ProductDetail />
+            </>
         )
     }
 }

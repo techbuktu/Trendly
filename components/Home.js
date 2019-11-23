@@ -6,12 +6,14 @@ import ProductFeed from './ProductFeed'
 const Home = () => {
     let product_list = []
     return (
-        <View>
+        <>
+            <View>
             <Text>Home</Text>
-        </View>
-        <ProductFeed 
-            product_list={product_list}
-        />
+            </View>
+            <ProductFeed 
+                product_list={product_list}
+            />
+        </>
     )
 }
 
