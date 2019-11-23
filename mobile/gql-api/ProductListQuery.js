@@ -1,9 +1,8 @@
 import { gql} from 'apollo-boost'
 
 
-const PRODUCT_LIST_QUERY = qgl`
+const PRODUCT_LIST_QUERY = gql`
 query ProductListQuery {
-  
     products {
       name,
       id,
@@ -23,6 +22,6 @@ query ProductListQuery {
       }
     }
   }
-`
+`;
 
 export default PRODUCT_LIST_QUERY
