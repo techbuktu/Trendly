@@ -5,7 +5,7 @@ const CategoryList = () => {
     let category_list = []
     return (
         <View>
-            <Text></Text>
+            <Text>List of Categories</Text>
         </View>
     )
 }

@@ -7,7 +7,7 @@ const NewProducts = () => {
     let new_products = []
     return (
         <View>
-            <Text></Text>
+            <Text>New Products</Text>
         </View>
         <ProductFeed 
             product_list={new_products}

@@ -7,7 +7,7 @@ const CategoryDetail = () => {
     let category_products = []
     return (
         <View>
-            <Text></Text>
+            <Text>Category Detail</Text>
         </View>
         <ProductFeed 
             product_list={category_products}

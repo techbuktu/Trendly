@@ -7,7 +7,7 @@ const Home = () => {
     let product_list = []
     return (
         <View>
-            <Text></Text>
+            <Text>Home</Text>
         </View>
         <ProductFeed 
             product_list={product_list}
