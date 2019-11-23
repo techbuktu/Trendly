@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
+import { useQuery } from '@apollo/react-hooks'
+
 import ProductFeed from './ProductFeed'
 
 const Home = () => {
