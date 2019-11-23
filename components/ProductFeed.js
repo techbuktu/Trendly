@@ -18,6 +18,7 @@ class ProductFeed extends Component {
             <View>
                 <Text> List of products passed as props.product_list //screenProps.product_list </Text>
             </View>
+            <ProductDetail />
         )
     }
 }
