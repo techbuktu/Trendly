@@ -40,3 +40,5 @@ const appStyles = StyleSheet.create({
       textAlign: 'right',
     },
   });
+
+  export default appStyles

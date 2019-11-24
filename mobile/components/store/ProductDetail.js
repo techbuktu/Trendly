@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet  } from 'react-native'
 
 class ProductDetail extends Component {
     constructor(props){
@@ -15,5 +15,9 @@ class ProductDetail extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+
+})
 
 export default ProductDetail

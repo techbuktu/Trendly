@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet  } from 'react-native'
 
 class Register extends Component {
     constructor(props){
@@ -13,5 +13,10 @@ class Register extends Component {
         )
     }
 }
+
+
+const registerStyles = StyleSheet.create({
+
+})
 
 export default Register

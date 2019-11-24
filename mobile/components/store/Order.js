@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet  } from 'react-native'
 
 class Order extends Component {
     constructor(props){
@@ -14,5 +14,9 @@ class Order extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+
+})
 
 export default Order

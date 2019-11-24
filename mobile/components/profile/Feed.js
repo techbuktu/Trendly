@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 
 class Feed extends Component {
     constructor(props){
@@ -14,5 +14,10 @@ class Feed extends Component {
         )
     }
 }
+
+const feedStyles = StyleSheet.create({
+
+})
+
 
 export default Feed
