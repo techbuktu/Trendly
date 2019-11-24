@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { STATUS_CODES } from 'http'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 class ProfileDetail extends Component {

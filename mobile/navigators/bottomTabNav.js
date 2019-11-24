@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import Home from '../components/Home';
 
-import { CategoryNav, BrandsNav } from './stackNav'
+import { CategoryNav, ProfileNav } from './stackNav'
 
 
 export const BottomTabNav = createBottomTabNavigator({
         Home: {screen: Home},
         Categories: {screen: CategoryNav},
-        Brands: {screen: BrandsNav},
+        Me: { screen: ProfileNav }
     },
     {
         initialRouteName: 'Home',

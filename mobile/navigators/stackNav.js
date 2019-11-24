@@ -1,28 +1,33 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../components/Home'
-import CategoryList from '../components/CategoryList'
-import CategoryDetail from '../components/CategoryDetail'
+import CategoryList from '../components/store/CategoryList'
+import CategoryDetail from '../components/store/CategoryDetail'
 
-import BrandSectionDetail from '../components/BrandSectionDetail'
-import ProductDetail from '../components/ProductDetail'
+import ProductDetail from '../components/store/ProductDetail'
+import ProfileDetail from '../components/profile/ProfileDetail';
+import LogIn from '../components/profile/LogIn'
+import Register from '../components/profile/Register'
 
 export const CategoryNav = createStackNavigator(
     {
         CategoryList: {screen: CategoryList},
-        CategoryDetail: {screen: CategoryDetail}
+        CategoryDetail: {screen: CategoryDetail},
+        ProductDetail: { screen: ProductDetail }
     },
     {
         initialRouteName: 'CategoryList'
     }
 )
 
-export const BrandsNav = createStackNavigator(
+export const ProfileNav = createStackNavigator(
     {
-        BrandSectionDetail: {screen: BrandSectionDetail},
-        ProductDetail: {screen: ProductDetail}
+        Me: { screen: ProfileDetail},
+        Register: { screen: Register },
+        LogIn: { screen: LogIn }
+
     },
     { 
-        initialRouteName: 'BrandSectionDetail'
+        initialRouteName: 'Me'
     }
 )
 

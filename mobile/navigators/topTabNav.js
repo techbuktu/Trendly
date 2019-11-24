@@ -1,13 +1,16 @@
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation'
-import NewProducts from '../components/NewProducts'
+import Cart from '../components/store/Cart'
+import Order from '../components/store/Order'
 
 
 export const TopTabNav = createMaterialTopTabNavigator(
     {
-        New: { screen: NewProducts}
+        Cart: { screen: Cart},
+        Orders: { screen: Order},
     },
     {
+        initialRouteName: "Cart",
         headerStyle: {
             color: 'green'
         }
