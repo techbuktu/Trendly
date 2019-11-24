@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-import { homeStyles } from '../styles/home'
-
 class Home extends Component {
     constructor(props){
         super(props)
@@ -14,7 +12,7 @@ class Home extends Component {
 
     render() {
         return (
-            <View style={ homeStyles2.title }>
+            <View style={ homeStyles.title }>
                 <Text> 
                     Home component, with 'links' to other sections and/OR list of 
                     currently-available (Product.isAvailable)

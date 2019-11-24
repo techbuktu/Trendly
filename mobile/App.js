@@ -25,12 +25,13 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { appStyles } from './styles/app'
+import AppNavContainer  from './navigators'
 
 import Home from './components/Home'
 
 const App: () => React$Node = () => {
   return (
-      <Home />
+      <AppNavContainer />
   );
 };
 
