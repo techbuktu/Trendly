@@ -2,7 +2,7 @@
 
 ## Mobile 
 ### Navigators
-* bottomTabNav {Home, Categories, Me}
+* bottomTabNav {Home, Categories(productsNav), Me(profileNav)}
 * topTabNav: {Cart, OrderList, New}
 * profileNav: stackNav : {Register, LogIn, ProfileDetail}
 * productsNav:stackNav {CategoryList, CategoryDetail, ProductDetail, Cart, Order}

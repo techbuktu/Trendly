@@ -31,11 +31,5 @@ export const ProfileNav = createStackNavigator(
     }
 )
 
-const StackNav = createStackNavigator(
-    {
-        Home: {screen: Home}
-    }, //RoutesConfig
-    {} //StackNavConfigs
-)
 
 export default StackNav
