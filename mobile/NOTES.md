@@ -1,3 +1,51 @@
+# Trendly MERNR Project
+
+## Mobile 
+### Navigators
+* bottomTabNav {Home, Categories, Me}
+* topTabNav: {Cart, OrderList, New}
+* profileNav: stackNav : {Register, LogIn, ProfileDetail}
+* productsNav:stackNav {CategoryList, CategoryDetail, ProductDetail, Cart, Order}
+* 
+
+
+### Components:
+* Profile: 
+    > Register
+
+    > LogIn
+
+    > ProfileDetail
+
+    > NewFeed
+
+    > Feed(detail)
+
+    > Comment(detail)
+
+    > NewComment
+
+    > Like
+
+* Store:
+    > Cart
+
+    > Order
+
+    > ProductDetail
+
+    > CategoryList
+
+    > CategoryDetail
+
+## Backend
+### Models
+
+### API Routes
+
+### Routes: home, api_docs ('/docs'), etc.
+
+
 ## DEV MODUS OPERANDI
 
 Using ApolloClient v2.6 

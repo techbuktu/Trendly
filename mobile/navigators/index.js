@@ -2,6 +2,7 @@ import { StackNav } from './stackNav';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../components/Home'
+import React from 'react'
 
 import BottomTabNav from './bottomTabNav'
 import TopTabNav from './topTabNav'
@@ -16,6 +17,17 @@ const AppNav = createStackNavigator({
 
     }
 )
+
+/**
+ const AppNav = () => {
+     return (
+         <React.Fragment>
+             <TopTabNav/>
+            <BottomTabNav/>
+         </React.Fragment>
+     )
+ }
+  */
 
 const AppNavContainer = createAppContainer(AppNav)
 

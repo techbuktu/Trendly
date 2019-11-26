@@ -26,12 +26,16 @@ import {
 
 import { appStyles } from './styles/app'
 import AppNavContainer  from './navigators'
+import TopTabNav from './navigators/topTabNav'
 
 import Home from './components/Home'
 
 const App: () => React$Node = () => {
   return (
-      <AppNavContainer />
+      <React.Fragment>
+          <AppNavContainer />
+      </React.Fragment>
+    
   );
 };
 

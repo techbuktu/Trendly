@@ -7,10 +7,10 @@ import Order from '../components/store/Order'
 export const TopTabNav = createMaterialTopTabNavigator(
     {
         Cart: { screen: Cart},
-        Orders: { screen: Order},
+        Orders: { screen: Order}
     },
     {
-        initialRouteName: "Cart",
+        //initialRouteName: "Cart",
         headerStyle: {
             color: 'green'
         }
