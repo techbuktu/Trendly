@@ -8,17 +8,6 @@ import ProfileDetail from '../components/profile/ProfileDetail';
 import LogIn from '../components/profile/LogIn'
 import Register from '../components/profile/Register'
 
-export const CategoryNav = createStackNavigator(
-    {
-        CategoryList: {screen: CategoryList},
-        CategoryDetail: {screen: CategoryDetail},
-        ProductDetail: { screen: ProductDetail }
-    },
-    {
-        initialRouteName: 'CategoryList'
-    }
-)
-
 export const ProfileNav = createStackNavigator(
     {
         Me: { screen: ProfileDetail},
@@ -32,4 +21,4 @@ export const ProfileNav = createStackNavigator(
 )
 
 
-export default StackNav
+//export default StackNav

@@ -3,10 +3,12 @@ import Home from '../components/Home';
 
 import { CategoryNav, ProfileNav } from './stackNav'
 import profileNav from './profileNav' 
+import productsNav from './productsNav'
+
 
 export const BottomTabNav = createBottomTabNavigator({
         Home: {screen: Home},
-        Categories: {screen: CategoryNav},
+        Categories: {screen: productsNav},
         Me: { screen: profileNav }
     },
     {
