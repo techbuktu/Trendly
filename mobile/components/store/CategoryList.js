@@ -5,13 +5,24 @@ class CategoryList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            category_list: []
+            category_list: [
+                {'name': 'Clothing', 
+                '_id':1 
+                },
+                {'name': 'Shoes', 
+                '_id':2 
+                },
+                {'name': 'Coats', 
+                '_id':3 
+                },
+            ]
         }
     }
-    
+
     getCategoryList(){
         //Use CategoryApi.getAllCategories() and pass res to state.category_list
     }
+
     render() {
         return (
            <React.Fragment>
@@ -20,8 +31,8 @@ class CategoryList extends Component {
                 </View>
                 <ScrollView style={styles.listContainer}>
                     {this.state.category_list.map(category => (
-                        <View style={styles.categoryStyle}>
-                            {category.name}
+                        <View style={styles.categoryStyle} key={category._id} onPress={{}}>
+                           <Text> {category.name}</Text>
                         </View>
                     ))}
                 </ScrollView>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FlatList, Text, View, StyleSheet  } from 'react-native'
+import PropTypes from 'prop-types'
 
 class CategoryDetail extends Component {
     constructor(props){
@@ -26,7 +27,7 @@ class CategoryDetail extends Component {
 
     renderItem = ({item}) => {
         return (
-        <Text> {item.name} : $ {item._id} </Text>
+        <Text onPress={{}}> {item.name} : $ {item._id} </Text>
         )
     }
 
@@ -70,5 +71,9 @@ const styles = StyleSheet.create({
     }
 
 })
+
+CategoryDetail.propTypes = {
+    category: PropTypes.object.isRequired
+}
 
 export default CategoryDetail
