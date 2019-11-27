@@ -17,7 +17,7 @@ const productsNav = createStackNavigator(
         Order: { screen: Order}
     },
     {
-        initialRouteName: "Orders"
+        initialRouteName: "Categories"
     })
 
 export default productsNav

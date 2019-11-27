@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet  } from 'react-native'
+import { Text, View, StyleSheet, TextInput  } from 'react-native'
 
 class Comment extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            commenter: {'firstName': 'Muhammad'},
+            commentBody: ""
+        }
     }
     render() {
         return (
