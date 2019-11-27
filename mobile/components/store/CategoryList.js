@@ -8,7 +8,7 @@ class CategoryList extends Component {
             category_list: []
         }
     }
-
+    
     getCategoryList(){
         //Use CategoryApi.getAllCategories() and pass res to state.category_list
     }
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         margin: "5%"
     },
     categoryStyle: {
-        
+
     }
 })
 

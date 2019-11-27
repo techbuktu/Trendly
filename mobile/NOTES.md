@@ -38,6 +38,10 @@
 
     > CategoryDetail
 
+### API Services:
+    > Profile: [  ]
+    > Store:  [  ]
+
 ## Backend
 ### Models
 

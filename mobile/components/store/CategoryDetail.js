@@ -5,7 +5,17 @@ class CategoryDetail extends Component {
     constructor(props){
         super(props)
         this.state ={
-            product_list : []
+            product_list : [
+                {   'name': 'Product One',
+                    '_id': 1
+                },
+                {   'name': 'Product Two',
+                    '_id': 2
+                },
+                {   'name': 'Product Three',
+                    '_id': 3
+                }
+            ]
         }
     }
 
@@ -14,9 +24,9 @@ class CategoryDetail extends Component {
         // set product_list to data.product_list
     }
 
-    renderItem(item){
+    renderItem = ({item}) => {
         return (
-        <Text> {item.name} : ${item.price}</Text>
+        <Text> {item.name} : $ {item._id} </Text>
         )
     }
 
@@ -28,7 +38,9 @@ class CategoryDetail extends Component {
         return (
             <React.Fragment>
                 <View>
-                    <Text style={styles.listHeader}> List of products in this category. </Text>
+                    <Text style={styles.listHeader}>
+                        List of products in this category. 
+                    </Text>
                 </View>
                 <FlatList 
                     style={styles.listContainer}
