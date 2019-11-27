@@ -1,24 +1,56 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 
 class OrderList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            order_list: []
+            order_list: [
+                { '_id': 1,
+                 'title': 'Books'
+                },
+                { '_id': 2,
+                 'title': 'Gifts for Birthday'
+                },
+                { '_id': 3,
+                 'title': 'November Sale'
+                }
+            ]
         }
     }
 
     componentDidMount(){
         //Call API and populate this.state.order_list
+        this.getOrderList()
     }
+
+    getOrderList(){
+        //OrderApi.getOrders() and then setState({})
+    }
+
     render() {
         return (
-            <View>
-                <Text> List of Orders by this User </Text>
-            </View>
+            <React.Fragment>
+                <View>
+                    <Text style={styles.title}> List of Orders by this User </Text>
+                </View>
+                <ScrollView>
+                    {this.state.order_list.map(order => (
+                        <View key={order._id}>
+                            <Text> {order.title} </Text>
+                        </View>
+                    ))}
+                </ScrollView>
+            </React.Fragment>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    title: {
+        textAlign: "center",
+        color: "blue"
+    }
+})
 
 export default OrderList
