@@ -28,6 +28,11 @@ class OrderList extends Component {
         //OrderApi.getOrders() and then setState({})
     }
 
+    onPressHandler(){
+        //navigate to 'Order' screen
+        return;
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -36,7 +41,7 @@ class OrderList extends Component {
                 </View>
                 <ScrollView>
                     {this.state.order_list.map(order => (
-                        <View key={order._id}>
+                        <View key={order._id} onPress={this.onPressHandler}>
                             <Text> {order.title} </Text>
                         </View>
                     ))}
