@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, StyleSheet  } from 'react-native'
 
+import CategoryApi from '../../api/store/CategoryApi'
+
+
 class CategoryList extends Component {
     constructor(props){
         super(props)

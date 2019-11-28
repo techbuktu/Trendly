@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList, StyleSheet  } from 'react-native'
 
+import OrderApi from '../../api/store/OrderApi'
+
 class Order extends Component {
     constructor(props){
         super(props)

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView, StyleSheet  } from 'react-native'
 
+import CartApi from '../../api/store/CartApi'
+import ProductApi from '../../api/store/ProductApi'
+
 class Cart extends Component {
     constructor(props){
         super(props)

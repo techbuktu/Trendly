@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FlatList, Text, View, StyleSheet  } from 'react-native'
 import PropTypes from 'prop-types'
 
+import CategoryApi from '../../api/store/CategoryApi'
+
 class CategoryDetail extends Component {
     constructor(props){
         super(props)
