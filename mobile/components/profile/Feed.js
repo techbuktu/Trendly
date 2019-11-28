@@ -10,6 +10,10 @@ class Feed extends Component {
     constructor(props){
         super(props)
     }
+
+    updateFeedData(){
+        //FeedApi.updateFeed()
+    }
     
     render() {
         return (

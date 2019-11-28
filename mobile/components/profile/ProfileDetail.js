@@ -4,6 +4,8 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 import UserApi from '../../api/profile/UserApi'
 import ProfileApi from '../../api/profile/ProfileApi'
+import FeedApi from '../../api/profile/FeedApi'
+import CommentApi from '../../api/profile/CommentApi'
 
 class ProfileDetail extends Component {
     constructor(props){

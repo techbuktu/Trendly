@@ -3,6 +3,7 @@ import { Text, View, StyleSheet  } from 'react-native'
 
 import UserApi from '../../api/profile/UserApi'
 import ProfileApi from '../../api/profile/ProfileApi'
+import FeedApi from '../../api/profile/FeedApi'
 
 class NewFeed extends Component {
     render() {
