@@ -16,7 +16,6 @@ class LikeApi {
         return Axios.delete(`/profile/likes/${like_id}`)
     }
 
-
 }
 
 export default LikeApi 
