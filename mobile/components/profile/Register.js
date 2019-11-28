@@ -3,6 +3,8 @@ import { Text, View, StyleSheet,
     TextInput, TouchableHighlight, Button  
     } from 'react-native'
 
+import UserApi from '../../api/profile/UserApi'
+
 class Register extends Component {
     constructor(props){
         super(props)

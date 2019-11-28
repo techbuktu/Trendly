@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet  } from 'react-native'
 
+import UserApi from '../../api/profile/UserApi'
+import ProfileApi from '../../api/profile/ProfileApi'
+
 class NewFeed extends Component {
     render() {
         return (
