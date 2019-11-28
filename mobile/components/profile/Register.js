@@ -19,8 +19,10 @@ class Register extends Component {
 
     }
 
-    onChangeText(){
-
+    onChangeText(key, value){
+        this.setState({
+            [key]: value
+        })
     }
 
     submitForm(){
@@ -40,20 +42,20 @@ class Register extends Component {
 
                         value={this.state.firstName}
                         placeholder="Enter your first name"
-                        onChangeText = {this.onChangeText}
+                        onChangeText = {this.onChangeText(key, value)}
                     />
                 </View>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.lastName}
                     placeholder="Enter your last name"
-                    onChangeText = {this.onChangeText}
+                    onChangeText = {this.onChangeText(key, value)}
                 />
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.password}
                     placeholder="*******"
-                    onChangeText = {this.onChangeText}
+                    onChangeText = {this.onChangeText(key, value)}
                     
                 />
                 <Button 
