@@ -1,4 +1,4 @@
-import Axios from './'
+import Axios from '../'
 
 class ProfileApi {
     /**
@@ -24,7 +24,7 @@ class ProfileApi {
     static deleteProfile(profile_id){
         return Axios.delete(`/profile/profile/${profile_id}`)
     }
-    
+
 }
 
 export default ProfileApi 
