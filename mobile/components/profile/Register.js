@@ -25,6 +25,8 @@ class Register extends Component {
     onChangeText(key, value){
         this.setState({
             [key]: value
+        }, () => {
+            console.log(`this.state: ${this.state[key]}`)
         })
     }
 
@@ -45,20 +47,20 @@ class Register extends Component {
 
                         value={this.state.firstName}
                         placeholder="Enter your first name"
-                        onChangeText = {this.onChangeText(key, value)}
+                        onChangeText = {value => this.onChangeText('firstName', value)}
                     />
                 </View>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.lastName}
                     placeholder="Enter your last name"
-                    onChangeText = {this.onChangeText(key, value)}
+                    onChangeText = {value => this.onChangeText('lastName', value)}
                 />
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.password}
                     placeholder="*******"
-                    onChangeText = {this.onChangeText(key, value)}
+                    onChangeText = {value => this.onChangeText('password', value)}
                     
                 />
                 <Button 
