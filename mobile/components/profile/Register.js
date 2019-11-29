@@ -13,7 +13,7 @@ class Register extends Component {
             firstName: "",
             lastName: "",
             password: ""
-        }
+        },
 
         this.submitForm = this.submitForm.bind(this)
     }
@@ -31,29 +31,43 @@ class Register extends Component {
     }
 
     submitForm(){
+        if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '') return
         const new_user_obj = {}
         //UserApi.register(new_user_obj)
         console.log('form submitted...')
-    }
+        new_user_obj["firstName"] = this.state.firstName
+        new_user_obj["lastName"] = this.state.lastName
+        new_user_obj["password"] = this.state.password
+        console.log(`new_user_obj: ${new_user_obj.firstName}`)
 
+        //Submit valid form data using UserApi 
+        UserApi.register(new_user_obj)
+            .then(res => {
+                //navigate to new User/Profile page.
+                console.log('UserApi.register() success!')
+            })
+            .catch(err => {
+                console.log('UserApi.register() error')
+            })
+            .finally()
+    }
 
     render() {
         return (
             <View>
-                <Text> Create Your Trendly Account</Text>
-                <View style={styles.inputBox}>
-                    <Text> First Name: </Text>
-                    <TextInput
+                <Text style={styles.formTitle}> Create Your Trendly Account</Text>
 
+                <View style={styles.formContainer}>
+                    <TextInput
+                        style={styles.inputBox}
                         value={this.state.firstName}
-                        placeholder="Enter your first name"
+                        placeholder="First name"
                         onChangeText = {value => this.onChangeText('firstName', value)}
                     />
-                </View>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.lastName}
-                    placeholder="Enter your last name"
+                    placeholder="Last name"
                     onChangeText = {value => this.onChangeText('lastName', value)}
                 />
                 <TextInput
@@ -63,29 +77,42 @@ class Register extends Component {
                     onChangeText = {value => this.onChangeText('password', value)}
                     
                 />
-                <Button 
+                <TouchableHighlight 
                     style={styles.submitButton}
                     title="Register"
-                    onPress={this.submitForm}
-
-                />
+                    onPress={this.submitForm}>
+                    <View>
+                        <Text styles={styles.buttonText}> Register</Text>
+                    </View>
+                </TouchableHighlight>
             </View>
+        </View>
         )
     }
 }
 
-
 const styles = StyleSheet.create({
+    formTitle: {
+        fontSize: 15,
+        textAlign: "center"
+    },
+    formContainer: {
+        padding: 10
+    },
     inputBox: {
         color: "blue",
         alignContent: "flex-start",
-        textAlign: "left"
+        textAlign: "left",
+        marginLeft: 15
     },
     submitButton: {
         width: "50%",
         marginLeft: "25%",
-        alignSelf: "center"
-
+        alignSelf: "center",
+    },
+    buttonText: {
+        fontSize: 55,
+        color: "blue"
     }
 
 })
