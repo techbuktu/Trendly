@@ -12,6 +12,7 @@ class Register extends Component {
         this.state ={
             firstName: "",
             lastName: "",
+            email: "",
             password: ""
         },
 
@@ -31,12 +32,13 @@ class Register extends Component {
     }
 
     submitForm(){
-        if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '') return
+        if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.email === '') return
         const new_user_obj = {}
         //UserApi.register(new_user_obj)
         console.log('form submitted...')
         new_user_obj["firstName"] = this.state.firstName
         new_user_obj["lastName"] = this.state.lastName
+        new_user_obj["email"] = this.state.email
         new_user_obj["password"] = this.state.password
         console.log(`new_user_obj: ${new_user_obj.firstName}`)
 
@@ -69,6 +71,13 @@ class Register extends Component {
                     value={this.state.lastName}
                     placeholder="Last name"
                     onChangeText = {value => this.onChangeText('lastName', value)}
+                />
+                <TextInput
+                    style={styles.inputBox}
+                    value={this.state.email}
+                    placeholder="email@example.com"
+                    onChangeText = {value => this.onChangeText('email', value)}
+                    
                 />
                 <TextInput
                     style={styles.inputBox}
