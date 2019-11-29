@@ -60,12 +60,12 @@ class Register extends Component {
                 <Text style={styles.formTitle}> Create Your Trendly Account</Text>
 
                 <View style={styles.formContainer}>
-                    <TextInput
-                        style={styles.inputBox}
-                        value={this.state.firstName}
-                        placeholder="First name"
-                        onChangeText = {value => this.onChangeText('firstName', value)}
-                    />
+                <TextInput
+                    style={styles.inputBox}
+                    value={this.state.firstName}
+                    placeholder="First name"
+                    onChangeText = {value => this.onChangeText('firstName', value)}
+                />
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.lastName}
@@ -86,14 +86,14 @@ class Register extends Component {
                     onChangeText = {value => this.onChangeText('password', value)}
                     
                 />
-                <TouchableHighlight 
-                    style={styles.submitButton}
-                    title="Register"
-                    onPress={this.submitForm}>
-                    <View>
-                        <Text styles={styles.buttonText}> Register</Text>
-                    </View>
-                </TouchableHighlight>
+                <View style={styles.submitButton}>
+                    <TouchableHighlight
+                        onPress={this.submitForm}>
+                        <View>
+                            <Text styles={styles.buttonText}> Register</Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
             </View>
         </View>
         )
