@@ -42,7 +42,13 @@ class LogIn extends Component {
             .catch(err => {
                 console.log(`err: ${err}`)
             })
-            .finally(() => console.log(`loginJSON: ${loginJSON}`))
+            .finally(() => {
+                console.log(`loginJSON: ${loginJSON}`)
+                this.setState({
+                    email: "",
+                    password: ""
+                })
+            })
     }
     render() {
         return (
@@ -64,10 +70,9 @@ class LogIn extends Component {
                     onChangeText = {value => this.onChangeText('password', value)}
                     
                 />
-                <TouchableOpacity 
-                    style={styles.submitButton}
+                <TouchableOpacity
                     onPress={this.processLogin}>
-                    <View>
+                    <View style={styles.submitButton}>
                         <Text styles={styles.buttonText}> Login</Text>
                     </View>
                 </TouchableOpacity>
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
     submitButton: {
         width: "50%",
         marginLeft: "25%",
-        alignSelf: "center",
+        alignSelf: "center"
     },
     buttonText: {
         fontSize: 55,
