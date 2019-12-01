@@ -11,7 +11,7 @@ const profileNav = createStackNavigator(
         Profile: {screen: ProfileDetail}
     },
     {
-        initialRouteName: "Login"
+        initialRouteName: "Profile"
     }
     )
 
