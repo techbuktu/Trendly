@@ -8,7 +8,6 @@ import FeedApi from '../../api/profile/FeedApi'
 import CommentApi from '../../api/profile/CommentApi'
 
 import Feed from './Feed'
-import NewFeed from './NewFeed'
 
 
 class ProfileDetail extends Component {

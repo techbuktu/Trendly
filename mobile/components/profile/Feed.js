@@ -6,6 +6,8 @@ import ProfileApi from '../../api/profile/ProfileApi'
 import CommentApi from '../../api/profile/CommentApi'
 import FeedApi from '../../api/profile/FeedApi'
 
+import NewFeed from './NewFeed'
+
 class Feed extends Component {
     constructor(props){
         super(props)
@@ -28,18 +30,21 @@ class Feed extends Component {
     
     render() {
         return (
-            <View>
-                <Text> My Latest Updates </Text>
-                {this.state.profileFeeds.map(feed => {
-                    return (
-                        <View>
-                            <Text>
-                                {feed.content}
-                            </Text>
-                        </View>
-                    )
-                })}
-            </View>
+            <React.Fragment>
+                <NewFeed user={this.props.user} />
+                <View>
+                    <Text> My Latest Updates </Text>
+                    {this.state.profileFeeds.map(feed => {
+                        return (
+                            <View>
+                                <Text>
+                                    {feed.content}
+                                </Text>
+                            </View>
+                        )
+                    })}
+                </View>
+            </React.Fragment>
         )
     }
 }
