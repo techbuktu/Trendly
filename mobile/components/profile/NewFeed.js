@@ -25,7 +25,7 @@ class NewFeed extends Component {
     submitFeedUpdate(){
         if(this.state.feedContent === '') return
         const newFeed = {}
-        newFeed[feedContent] = this.state.feedContent
+        newFeed["feedContent"] = this.state.feedContent
         let newFeedJSON = JSON.stringify(newFeed);
         FeedApi.postFeed(newFeedJSON)
             .then(res => {

@@ -49,7 +49,7 @@ class Feed extends Component {
     }
 }
 
-const feedStyles = StyleSheet.create({
+const styles = StyleSheet.create({
 
 })
 
