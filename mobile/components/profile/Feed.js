@@ -9,6 +9,17 @@ import FeedApi from '../../api/profile/FeedApi'
 class Feed extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            profileFeeds: [
+                {content: 'I wrote the React native app.'},
+                {content: 'I created the backend Node.js/Express/Mongo API'},
+                {content: 'I wrote the docs and launched!'}
+            ]
+        }
+    }
+
+    getProfileFeed(){
+        //FeedApi.getFeedsforUser(user_id)
     }
 
     updateFeedData(){
@@ -18,7 +29,16 @@ class Feed extends Component {
     render() {
         return (
             <View>
-                <Text> Single feed update UI </Text>
+                <Text> My Latest Updates </Text>
+                {this.state.profileFeeds.map(feed => {
+                    return (
+                        <View>
+                            <Text>
+                                {feed.content}
+                            </Text>
+                        </View>
+                    )
+                })}
             </View>
         )
     }

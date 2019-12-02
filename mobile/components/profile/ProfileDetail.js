@@ -7,6 +7,10 @@ import ProfileApi from '../../api/profile/ProfileApi'
 import FeedApi from '../../api/profile/FeedApi'
 import CommentApi from '../../api/profile/CommentApi'
 
+import Feed from './Feed'
+import NewFeed from './NewFeed'
+
+
 class ProfileDetail extends Component {
     constructor(props){
         super(props)
@@ -35,16 +39,20 @@ class ProfileDetail extends Component {
 
     render() {
         return (
-            <View>
-                <Text style={styles.profileHeading}> {this.state.user.firstName} {this.state.user.lastName} </Text>
-                <Image
-                    style={styles.profileImage}
-                    source={{uri: 'http://jalloh.com/static/jalloh/photos/mjalloh.jpeg'}}
-                />
-                <Text style={styles.aboutText}>
-                    {this.state.profile.about}
-                </Text>
-            </View>
+            <React.Fragment>
+                <View>
+                    <Text style={styles.profileHeading}> {this.state.user.firstName} {this.state.user.lastName} </Text>
+                    <Image
+                        style={styles.profileImage}
+                        source={{uri: 'http://jalloh.com/static/jalloh/photos/mjalloh.jpeg'}}
+                    />
+                    <Text style={styles.aboutText}>
+                        {this.state.profile.about}
+                    </Text>
+                </View>
+                <Feed user={this.state.user} />
+            </React.Fragment>
+           
         )
     }
 }
