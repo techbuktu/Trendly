@@ -33,10 +33,10 @@ class Feed extends Component {
             <React.Fragment>
                 <NewFeed user={this.props.user} />
                 <View>
-                    <Text> My Latest Updates </Text>
+                    <Text style={{ textAlign: "center", color: "blue"}}> My Latest Updates </Text>
                     {this.state.profileFeeds.map(feed => {
                         return (
-                            <View>
+                            <View style={styles.feedStyle}>
                                 <Text>
                                     {feed.content}
                                 </Text>
@@ -50,7 +50,10 @@ class Feed extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    feedStyle: {
+        padding: 5,
+        margin: 5
+    }
 })
 
 
