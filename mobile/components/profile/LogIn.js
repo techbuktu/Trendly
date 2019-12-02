@@ -55,7 +55,7 @@ class LogIn extends Component {
             <View>
                 <Text style={styles.formTitle}> Login to Your Account</Text>
 
-                <View style={styles.formContainer}>
+            <View style={styles.formContainer}>
                 <TextInput
                     style={styles.inputBox}
                     value={this.state.email}

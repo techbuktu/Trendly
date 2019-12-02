@@ -39,7 +39,7 @@ class NewFeed extends Component {
     render() {
         return (
             <View style={styles.formContainer}>
-                <Text> Post a New Update </Text>
+                <Text style={{textAlign: "center"}}> Post a New Update </Text>
                 <TextInput 
                     style={styles.inputBox}
                     value={this.state.content}
