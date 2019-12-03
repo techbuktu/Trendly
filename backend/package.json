@@ -4,7 +4,10 @@
   "description": "A Full Stack MERN-based project with a React Native mobile client",
   "main": "Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon Server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Muhammad Jalloh",
   "license": "ISC",
