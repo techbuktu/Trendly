@@ -23,8 +23,9 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', require('./api/auth'))
 
 app.use('/api/users', require('./api/profile/users'))
-/**
+
 app.use('/api/profiles', require('./api/profile/profiles'))
+/**
 app.use('/api/feeds', require('./api/profile/feeds'))
 app.use('/api/comments', require('./api/profile/comments'))
 app.use('/api/likes', require('./api/profile/likes'))
