@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const Product = require('../../models/store/Product')
+const Category = require('../../models/store/Category')
 
 
 /**
@@ -10,7 +11,19 @@ const Product = require('../../models/store/Product')
  * @access Public 
  */
 router.get('/', (req, res) => {
-    res.send('Success')
+    Product.find()
+        .then(products => {
+            res.json({
+                successMsg: `${products.length} Products were found.`,
+                product_list: products
+            })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Sorry, no Products were found.`,
+                error: err
+            })
+        })
 })
 
 /**
@@ -19,7 +32,18 @@ router.get('/', (req, res) => {
  * @access Public 
  */
 router.get('/:productId', (req, res) => {
-    res.send('Matching Product with :productId')
+    Product.findOne({ _id: req.params.productId})
+        .then(product => {
+            res.json({
+                product: product
+            })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `A Product with this id does not exist.`,
+                error: err
+            })
+        })
 
 })
 
@@ -29,7 +53,52 @@ router.get('/:productId', (req, res) => {
  * @access Public 
  */
 router.post('/', (req, res) => {
-    res.send('Create a new Product instance')
+    //Get the key-value items from the req.body object
+    const {name, category, imageUrl, price} = req.body 
+
+    //Verify that all required fields were sent by client.
+    if(!name || !category || !imageUrl || !price){
+        return res.status(400).json({
+            errorMsg: `Please, supply all required for the new Product.`
+        })
+    }
+
+    // Verify that a duplicate Product does not already exist
+    Product.findOne({ name: name, category: category})
+        .then(duplicateProduct => {
+            if(duplicateProduct){
+                res.status(400).json({
+                    errorMsg: `Sorry, this Product with id(${duplicateProduct._id}) already exists`
+                })
+            }else {
+                // Create a new Product instance using date supplied by the client
+                const newProduct = new Product({
+                    name, category, imageUrl, price
+                })
+
+                newProduct.save()
+                    .then(new_product => {
+                        res.json({
+                            successMsg: `A new Product (id: ${new_product._id}) was created.`,
+                            new_product: new_product
+                        })
+                    })
+                    .catch(err => {
+                        res.status(400).json({
+                            errorMsg: `Something went wrong. Please, check the 'error' obj and the data you sent.`,
+                            error: err
+                        })
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMsg:  `Something went wrong.`,
+                error: err
+            })
+        })
+
+
 })
 
 
@@ -39,7 +108,44 @@ router.post('/', (req, res) => {
  * @access Private
  */
 router.put('/:productId', (req, res) => {
-    res.send('Update matching Product')
+    //Verify that a Product with this productId exists
+    Product.findOne({ _id: req.params.productId })
+        .then(product => {
+
+            //Get the Product fields the client wants to update
+            const updatedProductFields = Object.keys(req.body)
+
+            //Create an object from the k,v of the fields to update
+            let productUpdates = {}
+
+            updatedProductFields.map(field => {
+                productUpdates[field] = req.body[field]
+            })
+
+            //Construct a 'query' obj to search the 'products' DB collection with
+            let productQuery = { _id: req.params.productId}
+
+            //Update the matching Product item in the DB
+            Product.updateOne(productQuery, productUpdates)
+                .then(updatedProduct => {
+                    res.json({
+                        successMsg: `This Product(id: ${updatedProduct._id}) has been updated.`,
+                        updated_product: updatedProduct
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        errorMsg: `This Product(id: ${req.params.productId}) could not be updated.`,
+                        error: err
+                    })
+                })
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMsg: `A Product (id: ${req.params.productId}) does not exist.`,
+                error: err
+            })
+        })
 })
 
 /**
@@ -48,7 +154,21 @@ router.put('/:productId', (req, res) => {
  * @access Private
  */
 router.delete('/:productId', (req, res) => {
-    res.send('Delete the matching Product')
+    Product.findOne({ _id: req.params.productId})
+        .then(product => {
+            product.remove()
+                .then(() => {
+                    res.json({
+                        successMsg: `The Product (id: ${req.params.productId}) has been deleted.`
+                    })
+                })
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMsg:  `A Product with id ${req.params.productId} does not exist.`,
+                error: err
+            })
+        })
 })
 
 
