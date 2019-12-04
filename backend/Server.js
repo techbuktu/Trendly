@@ -12,10 +12,14 @@ app.get('/', (req, res) => {
     res.send('Trendly eCommerce Platform')
 })
 
+app.get('/api', (req, res) => {
+    res.send('<h3> Trendly API Docs</h3>')
+})
 //Import route modules for 'profile' and 'store' APIs
 //'Profile' API endpoints
-/**
+
 app.use('/api/users', require('./api/profile/users'))
+/**
 app.use('/api/profiles', require('./api/profile/profiles'))
 app.use('/api/feeds', require('./api/profile/feeds'))
 app.use('/api/comments', require('./api/profile/comments'))

@@ -6,6 +6,10 @@ const router = express.Router()
  * @desc 
  * @access 
  */
+router.get('/', (req, res) => {
+
+})
+
 
 
 
