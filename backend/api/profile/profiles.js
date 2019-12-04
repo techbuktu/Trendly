@@ -48,6 +48,8 @@ router.put('/:profileId', (req, res) => {
  * @desc  Delete the matching Profile instance.
  * @access Private
  */
-
+router.delete('/:profileId', (req, res) => {
+    res.send('Delete the matching Profile')
+})
 
 module.exports = router 
