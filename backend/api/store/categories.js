@@ -10,7 +10,19 @@ const Category = require('../../models/store/Category')
  * @access Public 
  */
 router.get('/', (req, res) => {
-    res.send('Success')
+    Category.find({})
+        .then(categories => {
+            res.json({
+                successMsg: `${categories.length} categories were found.`,
+                category_list: categories
+            })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Sorry, no Categories were found.`,
+                error: err
+            })
+        })
 })
 
 /**
@@ -19,7 +31,18 @@ router.get('/', (req, res) => {
  * @access Public 
  */
 router.get('/:categoryId', (req, res) => {
-    res.send('Matching Category with :categoryId')
+    Category.findOne({_id: req.params.categoryId})
+        .then(category => {
+            res.json({
+                category
+            })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `This Category (id: ${req.params.categoryId}) was not found.`,
+                error: err
+            })
+        })
 
 })
 
@@ -29,7 +52,45 @@ router.get('/:categoryId', (req, res) => {
  * @access Public 
  */
 router.post('/', (req, res) => {
-    res.send('Create a new Category instance')
+    const { name, description } = req.body 
+
+    if(!name || !description){
+        return res.status(400).json({
+            errorMsg: `Please, send all required fields.`
+        })
+    }
+
+    //Make sure this is not a duplicate category 
+    Category.findOne({ name: name })
+        .then(duplicateCategory => {
+            if(duplicateCategory){
+                res.status(400).json({
+                    errorMsg: `This Category (id: ${req.params.categoryId}) already exists.`
+                })
+            }else {
+                const newCategory = new Category({
+                    name: name, description: description
+                })
+
+                newCategory.save()
+                    .then(new_category => {
+                        res.json({
+                            new_category
+                        })
+                    })
+                    .catch(err => {
+                        res.status(400).json({
+                            errorMsg: `A new category could not be created.`,
+                            error: err
+                        })
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(400).json({error: err})
+        })
+    
+
 })
 
 
@@ -39,7 +100,43 @@ router.post('/', (req, res) => {
  * @access Private
  */
 router.put('/:categoryId', (req, res) => {
-    res.send('Update matching Category')
+    //Verify that category exists
+    Category.findOne({ _id: req.params.categoryId})
+        .then(category => {
+
+            //Get the updated Category fields sent by client
+            const updatedFields = Object.keys(req.body)
+
+            //Create an update object to sent to the DB
+            let categoryUpdate = {}
+            updatedFields.map(field => {
+                categoryUpdate[field] = req.body[field]
+            })
+
+            //Create a query obj to query against the 'categories' collection in the DB
+            let query = {_id: req.params.categoryId}
+
+            //Update the Category in the DB and send response back to client
+            Category.updateOne(query, categoryUpdate)
+                .then(updatedCategory => {
+                    res.json({
+                        successMsg: `Category (id: ${req.params.categoryId}) has been updated.`,
+                        udated_category: updatedCategory
+                    })
+                })
+                .catch(updateError => {
+                    res.status(500).json({
+                        errorMsg: `This Category (id: ${req.params.categoryId}) could not be updated.`,
+                        error: updateError
+                    })
+                })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Sorry, this category does not exist.`,
+                error: err
+            })
+        })
 })
 
 /**
@@ -48,5 +145,28 @@ router.put('/:categoryId', (req, res) => {
  * @access Private
  */
 router.delete('/:categoryId', (req, res) => {
-    res.send('Delete the matching Category')
+    Editor.findOne({ _id: req.params.categoryId})
+        .then(category => {
+            category.remove()
+                .then(() => {
+                    res.json({
+                        successMsg: `You have successfully-deleted this Category (id: ${req.params.categoryId})`
+                    })
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        errorMsg: `This Category (id: ${req.params.categoryId}) could not be deleted.`,
+                        error: err
+                    })
+                })
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Sorry, this Category (id: ${req.params.categoryId}) could not be found. Please, check and try again.`,
+                error: err
+            })
+        })
 })
+
+
+module.exports = router

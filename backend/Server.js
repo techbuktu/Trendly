@@ -26,12 +26,13 @@ app.use('/api/users', require('./api/profile/users'))
 
 app.use('/api/profiles', require('./api/profile/profiles'))
 app.use('/api/feeds', require('./api/profile/feeds'))
-/**
-app.use('/api/comments', require('./api/profile/comments'))
-app.use('/api/likes', require('./api/profile/likes'))
+
+//app.use('/api/comments', require('./api/profile/comments'))
+//app.use('/api/likes', require('./api/profile/likes'))
 
 //Store API endpoints
 app.use('/api/categories', require('./api/store/categories'))
+/**
 app.use('/api/products', require('./api/store/products'))
 app.use('/api/carts', require('./api/store/carts'))
 app.use('/api/orders', require('./api/store/orders'))

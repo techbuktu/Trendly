@@ -50,3 +50,6 @@ router.put('/:productId', (req, res) => {
 router.delete('/:productId', (req, res) => {
     res.send('Delete the matching Product')
 })
+
+
+module.exports = router 

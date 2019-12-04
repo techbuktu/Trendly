@@ -50,3 +50,5 @@ router.put('/:cartId', (req, res) => {
 router.delete('/:cartId', (req, res) => {
     res.send('Delete the matching Cart')
 })
+
+module.exports = router 
