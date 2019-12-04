@@ -11,7 +11,18 @@ const Profile = require('../../models/profile/Profile')
  * @access Public 
  */
 router.get('/', (req, res) => {
-    res.send('Success')
+    Profile.find()
+        .then(profiles => {
+            res.json({
+                successMsg: `${profiles.length} Profiles were found.`,
+                profile_list : profiles
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMessage: 'Sorry, no Profiles exist.'
+            })
+        })
 })
 
 /**
@@ -20,7 +31,18 @@ router.get('/', (req, res) => {
  * @access Public 
  */
 router.get('/:profileId', (req, res) => {
-    res.send('Matching Profile with :profileId')
+    Profile.findOne({ _id: req.params.profileId})
+        .then(profile => {
+            res.json({
+                profile
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMsg: `Profile with ID of {req.params.profileId} was not found.`,
+                error: err
+            })
+        })
 
 })
 
@@ -30,7 +52,41 @@ router.get('/:profileId', (req, res) => {
  * @access Public 
  */
 router.post('/', (req, res) => {
-    res.send('Create a new Profile instance')
+    const {user, about, profileImage} = req.body 
+
+    //Check to make sure all required data were sent by client
+    if(!user || !about || !profileImage){
+        return res.status(400).json({
+            errorMsg: `Please, send all fields' data.`
+        })
+    }
+
+    //Make sure that no duplicate Profile instance exists
+    Profile.findOne({ user})
+        .then(duplicateProfile => {
+            if(duplicateProfile){
+                res.status(400).json({
+                    errorMsg: `The specified User already has a Profile instance.`
+                })
+            }else {
+                // Create a new Profile instance
+                const newProfile = new Profile({
+                    user, about, profileImage
+                })
+                newProfile.save()
+                    .then(new_profile => {
+                        res.jsond({
+                            successMsg: 'You have created a new Profile with ID {new_profile._id}',
+                            new_profile: new_profile
+                        })
+                    })
+                    .catch(err => {
+                        res.status(400).json({
+                            errorMsg: 'Sorry, a new Profile could not be instantiated. '
+                        })
+                    })
+            }
+        })
 })
 
 
@@ -40,7 +96,43 @@ router.post('/', (req, res) => {
  * @access Private
  */
 router.put('/:profileId', (req, res) => {
-    res.send('Update matching Profile')
+
+    //First: check to make sure a matching Profile instance exists
+    Profile.findOne({ _id: req.params.profileId})
+        .then(profile => {
+            //Grab the updated Profile fields
+            const updatedFields = Object.keys(req.body);
+
+            //Create an object out of the updated fields
+            let profileUpdates = {}
+            updatedFields.map(field => profileUpdates[filed] = req.body[field])
+        })
+
+        // Create a query to search the DB's 'profiles' collection
+        let query = { _id:req.params.profileId };
+
+        //Query the 'profiles' collection in the DB to update the matching Profile instance and send response to requesting client
+        Profile.updateOne(query, profileUpdates)
+            .then(updatedProfile => {
+                res.json({
+                    successMsg: `Profile (id: ${req.params.profileId}) has been updated`,
+                    updated_profile: updatedProfile
+                })
+            })
+            .catch(updateError => {
+                res.status(500).json({
+                    errorMsg: `Sorry, Profile (id: ${req.params.profileId}) could not be updates`,
+                    error: updateError
+                })
+            })
+
+        .catch(err => {
+            res.status(400).jsond({
+                errorMsg: `This Profile (id: ${req.params.profileId}) was not found.`,
+                error: err
+            })
+        })
+
 })
 
 /**
@@ -49,7 +141,26 @@ router.put('/:profileId', (req, res) => {
  * @access Private
  */
 router.delete('/:profileId', (req, res) => {
-    res.send('Delete the matching Profile')
+    Profile.findById(req.params.profileId)
+        .then(profile => {
+            profile.remove()
+                .then(() => {
+                    successMsg: `This Profile (id: ${req.params.profileId}) was deleted.`
+                })
+                .catch(deleteError => {
+                    res.status(400).json({
+                        errorMsg: `Sorry, this Profile (id: ${req.params.profileId}) could not be deleted. Please, check your creds.`,
+                        error: deleteError
+                    })
+                })
+        })
+        .catch(err => {
+            res.status(400).json({
+                errorMsg: `This Profile (id: ${req.params.profileId}) was not found.`,
+                error: err
+            })
+        })
+
 })
 
 module.exports = router 
