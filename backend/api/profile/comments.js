@@ -1,11 +1,11 @@
 const express = require("express")
 const router = express.Router()
 
-const Comment = require('../../models/Comment/Comment')
+const Comment = require('../../models/comment/comment')
 
 
 /**
- * @route GET api/Comments
+ * @route GET api/comments
  * @desc  Get a list of all Comment instances.
  * @access Public 
  */
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @route GET api/Comments/:commentId
+ * @route GET api/comments/:commentId
  * @desc  Get the matching Comment with _id of :commentId
  * @access Public 
  */
@@ -24,7 +24,7 @@ router.get('/:commentId', (req, res) => {
 })
 
 /**
- * @route POST api/Comments
+ * @route POST api/comments
  * @desc  Create a new Comment model instance
  * @access Public 
  */
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
 
 /**
- * @route PUT api/Comments/:commentId
+ * @route PUT api/comments/:commentId
  * @desc  Update the matching Comment instance
  * @access Private
  */
@@ -43,7 +43,7 @@ router.put('/:commentId', (req, res) => {
 })
 
 /**
- * @route DELETE api/Comments/:commentId
+ * @route DELETE api/comments/:commentId
  * @desc  Delete the matching Comment instance.
  * @access Private
  */

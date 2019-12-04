@@ -1,11 +1,11 @@
 const express = require("express")
 const router = express.Router()
 
-const Like = require('../../models/Like/Like')
+const Like = require('../../models/like/like')
 
 
 /**
- * @route GET api/Likes
+ * @route GET api/likes
  * @desc  Get a list of all Like instances.
  * @access Public 
  */
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @route GET api/Likes/:likeId
+ * @route GET api/likes/:likeId
  * @desc  Get the matching Like with _id of :likeId
  * @access Public 
  */
@@ -24,7 +24,7 @@ router.get('/:likeId', (req, res) => {
 })
 
 /**
- * @route POST api/Likes
+ * @route POST api/likes
  * @desc  Create a new Like model instance
  * @access Public 
  */
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
 
 /**
- * @route PUT api/Likes/:likeId
+ * @route PUT api/likes/:likeId
  * @desc  Update the matching Like instance
  * @access Private
  */
@@ -43,7 +43,7 @@ router.put('/:likeId', (req, res) => {
 })
 
 /**
- * @route DELETE api/Likes/:likeId
+ * @route DELETE api/likes/:likeId
  * @desc  Delete the matching Like instance.
  * @access Private
  */

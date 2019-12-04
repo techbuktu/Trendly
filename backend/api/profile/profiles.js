@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 // Import/require the Profile model
-const Profile = require('../../models/profile/Profile')
+const Profile = require('../../models/profile/profile')
 
 /**
  * @route GET api/profiles

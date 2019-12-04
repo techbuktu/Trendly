@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const Feed = require('../../models/Feed/Feed')
+const Feed = require('../../models/feeds/feeds')
 
 /**
  * @route GET api/feeds
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @route GET api/Feeds/:feedId
+ * @route GET api/feeds/:feedId
  * @desc  Get the matching Feed with _id of :feedId
  * @access Public 
  */
@@ -23,7 +23,7 @@ router.get('/:feedId', (req, res) => {
 })
 
 /**
- * @route POST api/Feeds
+ * @route POST api/feeds
  * @desc  Create a new Feed model instance
  * @access Public 
  */
@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
 
 
 /**
- * @route PUT api/Feeds/:feedId
+ * @route PUT api/feeds/:feedId
  * @desc  Update the matching Feed instance
  * @access Private
  */
@@ -42,7 +42,7 @@ router.put('/:feedId', (req, res) => {
 })
 
 /**
- * @route DELETE api/Feeds/:feedId
+ * @route DELETE api/feeds/:feedId
  * @desc  Delete the matching Feed instance.
  * @access Private
  */
