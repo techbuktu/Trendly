@@ -12,6 +12,17 @@ router.get('/', (req, res) => {
     res.send('Success')
 })
 
+
+/**
+ * @route GET api/feeds/for/:profileId
+ * @desc  Get the matching Feed with _id of :feedId
+ * @access Public 
+ */
+router.get('/:feedId', (req, res) => {
+    res.send('Matching Feed with :feedId')
+
+})
+
 /**
  * @route GET api/feeds/:feedId
  * @desc  Get the matching Feed with _id of :feedId
