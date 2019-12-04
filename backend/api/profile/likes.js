@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const Like = require('../../models/like/like')
+const Like = require('../../models/like/Like')
 
 
 /**

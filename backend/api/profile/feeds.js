@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const Feed = require('../../models/feeds/feeds')
+const Feed = require('../../models/feeds/Feed')
 
 /**
  * @route GET api/feeds
