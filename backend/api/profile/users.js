@@ -15,7 +15,10 @@ router.get('/', (req, res) => {
     User.find()
         .then(users => {
             res.status(200).json(
-                {user_list: users}
+                {
+                    successMsg: `${users.length} users were found.`,
+                    user_list: users,
+                }
                 );
         })
         .catch(err => {
@@ -27,13 +30,19 @@ router.get('/', (req, res) => {
 
 /**
  * @route   GET api/users
- * @desc   Get list of all Users
+ * @desc   Get a matching User instance
  * @access Public
  */
-router.get(':userId', (req, res) => {
+router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user => {
-            res.status(200).json({user: user})
+            if(user){
+                return res.status(200).json({user: user})
+            }else {
+                res.status(404).json({
+                    errorMsg: `A User with this id (${req.params.userId} does not exist.)`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
