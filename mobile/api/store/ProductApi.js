@@ -6,23 +6,23 @@ class ProductApi {
      */
 
     static getAllProducts(){
-        return Axios.get(`/store/products`)
+        return Axios.get(`/products`)
     }
 
     static getProduct(product_id){
-        return Axios.get(`/store/products/${product_id}`)
+        return Axios.get(`/products/${product_id}`)
     }
 
     static newProduct(new_product){
-        return Axios.post(`/store/products`, new_product)
+        return Axios.post(`/products`, new_product)
     }
 
     static updateProduct(product_id, updated_product_obj){
-        return Axios.put(`/store/products/${product_id}`, updated_product_obj)
+        return Axios.put(`/products/${product_id}`, updated_product_obj)
     }
 
     static deleteProduct(product_id){
-        return Axios.delete(`/store/products/${product_id}`)
+        return Axios.delete(`/products/${product_id}`)
     }
     
 }

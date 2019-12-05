@@ -6,23 +6,23 @@ class CategoryApi {
      */
 
      static getAllCategories(){
-         return Axios.get(`/store/categories`)
+         return Axios.get(`/categories`)
      }
 
      static newCategory(new_category_object){
-         return Axios.post(`/store/categories`, new_category_object)
+         return Axios.post(`/categories`, new_category_object)
      }
 
      static getCategory(category_id){
-         return Axios.get(`/store/categories/${category_id}`)
+         return Axios.get(`/categories/${category_id}`)
      }
 
      static updateCategory(category_id, updated_category_obj){
-         return Axios.put(`/store/categories/${category_id}`, updated_category_obj)
+         return Axios.put(`/categories/${category_id}`, updated_category_obj)
     }
 
     static deleteCategory(category_id){
-        return Axios.delete(`/store/categories/${category_id}`)
+        return Axios.delete(`/categories/${category_id}`)
     }
 
 }
