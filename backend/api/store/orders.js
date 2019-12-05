@@ -128,8 +128,10 @@ router.put('/:orderId', (req, res) => {
                                 })
                             })
                             .catch(err => {
-                                errorMsg: `Something went wrong.`,
-                                error: err
+                                res.status(400).json({
+                                    errorMsg: `Something went wrong.`,
+                                    error: err
+                                })
                             })
                     }
                 })
