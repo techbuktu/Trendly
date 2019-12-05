@@ -6,23 +6,23 @@ class ProfileApi {
      */
 
     static newProfile(new_profile_obj){
-        return Axios.post('/profile/profiles', new_profile_obj)
+        return Axios.post('/profiles', new_profile_obj)
     }
 
     static getAllProfiles(){
-        return Axios.get('/profile/profiles')
+        return Axios.get('/profiles')
     }
 
     static updateProfile(profile_id, updated_profile){
-        return Axios.put(`/profile/profiles/${profile_id}`, updated_profile)
+        return Axios.put(`/profiles/${profile_id}`, updated_profile)
     }
 
     static getSingleProfile(profile_id){
-        return Axios.get(`/profile/profiles/${profile_id}`)
+        return Axios.get(`/profiles/${profile_id}`)
     }
 
     static deleteProfile(profile_id){
-        return Axios.delete(`/profile/profile/${profile_id}`)
+        return Axios.delete(`/${profile_id}`)
     }
 
 }

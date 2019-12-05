@@ -6,7 +6,7 @@ class FeedApi {
      */
 
     static postFeed(new_feed){
-         return Axios.post(`/profile/feeds`, new_feed)
+         return Axios.post(`/feeds`, new_feed)
      }
 
     static getFeedsforUser(user_id){
@@ -14,11 +14,11 @@ class FeedApi {
      }
 
     static updateFeed(feed_id, updated_feed){
-        return Axios.put(`/profile/feeds/${feed_id}`, updated_feed)
+        return Axios.put(`/feeds/${feed_id}`, updated_feed)
     }
 
     static deleteFeed(feed_id){
-        return Axios.delete(`/profile/feeds/${feed_id}`)
+        return Axios.delete(`/feeds/${feed_id}`)
     }
 }
 
