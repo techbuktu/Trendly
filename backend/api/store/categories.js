@@ -154,8 +154,8 @@ router.delete('/:categoryId', (req, res) => {
                     })
                 })
                 .catch(err => {
-                    res.status(500).json({
-                        errorMsg: `This Category (id: ${req.params.categoryId}) could not be deleted.`,
+                    res.status(403).json({
+                        errorMsg: `This Category (id: ${req.params.categoryId}) could not be deleted. Make sure you have the right permissions.`,
                         error: err
                     })
                 })

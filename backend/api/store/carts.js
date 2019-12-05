@@ -152,7 +152,7 @@ router.delete('/:cartId', (req, res) => {
                 })
             })
             .catch(err => {
-                res.status(302).json({
+                res.status(403).json({
                     errorMsg: `Cart could not be deleted. Make sure you have the proper permissions.`,
                     error: err
                 })

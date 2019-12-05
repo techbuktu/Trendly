@@ -161,6 +161,12 @@ router.delete('/:productId', (req, res) => {
                         successMsg: `The Product (id: ${req.params.productId}) has been deleted.`
                     })
                 })
+                .catch(err => {
+                    res.status(403).json({
+                        errorMsg: `Make sure you have the proper permissions.`,
+                        error: err
+                    })
+                })
         })
         .catch(err => {
             res.status(400).json({
