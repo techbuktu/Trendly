@@ -171,5 +171,45 @@ router.delete('/:productId', (req, res) => {
         })
 })
 
+/**
+ * @route   GET api/products/in/:categoryId
+ * @desc    Get a list of all products in a matching Category
+ * @access  Public 
+ */
+router.get('/in/:categoryId', (req, res) => {
+    const categoryId = req.params.categoryId
+
+    //Step One: Verify that the Category exists
+    Category.findOne({ _id: categoryId})
+        .then(category => {
+            if(!category){
+                res.status(400).json({
+                    errorMsg: `Sorry, that Category (id:{categoryId}) does not exist`
+                })
+            }else {
+                //Get all Products in this Category 
+                Product.find({ category: category})
+                    .then(product_list => {
+                        if(product_list.length > 0){
+                            res.json({
+                                successMsg: `${product_list.length} Products were found in this Category(id: ${categoryId})`,
+                                product_list: product_list
+                            })
+                        }else {
+                            res.status(404).json({
+                                errorMsg: `No Products in this Category (id: ${categoryId})`
+                            })
+                        }
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Sorry, a Category with id (${categoryId}) does not exist.`,
+                error: err
+            })
+        })
+
+})
 
 module.exports = router 

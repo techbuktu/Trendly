@@ -8,7 +8,7 @@ const ProductSchema = new Schema({
         required: true
     },
     category: {
-        type: Map
+        type: String
     },
     imageUrl: {
         type: String,
