@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const OrderSchema = new Schema({
     user: {
-        type: Map,
+        type: String,
         required: true
     },
     date: {
@@ -12,7 +12,8 @@ const OrderSchema = new Schema({
         default: Date.now
     },
     product_list: {
-        type: Array
+        type: Array,
+        default: []
     }
 
 })
