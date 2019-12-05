@@ -4,7 +4,6 @@ const router = express.Router()
 const Product = require('../../models/store/Product')
 const Category = require('../../models/store/Category')
 
-
 /**
  * @route GET api/products
  * @desc  Get a list of all Product instances.

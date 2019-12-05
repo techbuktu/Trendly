@@ -4,11 +4,15 @@ const Schema = mongoose.Schema
 
 const CartSchema = new Schema({
     owner: {
-        type: Map,
+        type: String,
         required: true
     },
     product_list: {
         type: Array
+    },
+    createdDate: {
+        type: Date,
+        default: Date.now
     }
 })
 
