@@ -10,12 +10,18 @@ const Profile = require('../../models/profile/Profile')
  * @access Public 
  */
 router.get('/', (req, res) => {
-    Profile.find({})
+    Feed.find({})
         .then(feeds => {
-            res.json({
-                successMsg: `${feeds.length} Feeds were found.`,
-                feed_list: feeds
-            })
+            if(feeds.length > 0){
+                res.json({
+                    successMsg: `${feeds.length} Feeds were found.`,
+                    feed_list: feeds
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, no Feeds have been created.`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
@@ -70,33 +76,51 @@ router.post('/', (req, res) => {
         })
     }
 
-    //Check for the existence of a duplicate Feed
-    Feed.findOne({ profileId: profileId, content: content})
-        .then(duplicateFeed => {
-            if(duplicateFeed){
-                res.status(400).json({
-                    errorMsg: `This Feed already exists.`
-                })
-            } else {
-                //Create the new Feed 
-                const newFeed = new Feed({
-                    profileId: profileId, content: content
-                })
+    //Make sure a valid Profile exists
+    Profile.findById(profileId)
+        .then(validProfile => {
+            //If a valid Profile exists, the check for a duplicate Feed
+            if(validProfile){
+                    //Check for the existence of a duplicate Feed
+                    Feed.findOne({ profileId: profileId, content: content})
+                    .then(duplicateFeed => {
+                            if(duplicateFeed){
+                                res.status(400).json({
+                                    errorMsg: `This Feed already exists.`
+                                })
+                            } else {
+                                //Create the new Feed 
+                                const newFeed = new Feed({
+                                    profileId: profileId, content: content
+                                })
 
-                newFeed.save()
-                    .then(new_feed => {
-                        res.json({
-                            new_feed: new_feed
-                        })
+                                newFeed.save()
+                                    .then(new_feed => {
+                                        res.json({
+                                            new_feed: new_feed
+                                        })
+                                    })
+                                    .catch(err => {
+                                        res.status(400).json({
+                                            errorMsg: `New Feed could not be created.`,
+                                            error: err
+                                        })
+                                    })
+                            }
                     })
-                    .catch(err => {
-                        res.status(400).json({
-                            errorMsg: `New Feed could not be created.`,
-                            error: err
-                        })
-                    })
+            }else {
+                res.status(400).jsond({
+                    errorMsg: `Please, verify that you sent in valid data.`
+                })
             }
         })
+        .catch(profileError => {
+            res.status(400).json({
+                errorMsg: `That Profile (id: ${profileId}) does not exist.`,
+                error: profileError
+            })
+        })
+
 })
 
 
