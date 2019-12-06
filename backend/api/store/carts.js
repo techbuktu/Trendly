@@ -37,9 +37,15 @@ router.get('/', (req, res) => {
 router.get('/:cartId', (req, res) => {
     Cart.findOne({ _id: req.params.cartId})
         .then(cart => {
-            res.json({
-                cart: cart
-            })
+           if(cart){
+                res.json({
+                    cart: cart
+                })
+           }else {
+               res.status(404).json({
+                   errorMsg: `Please, check your data and try again.`
+               })
+           }
         })
         .catch(err => {
             res.status(400).json({
