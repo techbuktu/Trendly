@@ -3,7 +3,6 @@ const router = express.Router()
 
 const Category = require('../../models/store/Category')
 
-
 /**
  * @route GET api/categories
  * @desc  Get a list of all Category instances.
@@ -12,10 +11,16 @@ const Category = require('../../models/store/Category')
 router.get('/', (req, res) => {
     Category.find({})
         .then(categories => {
-            res.json({
-                successMsg: `${categories.length} categories were found.`,
-                category_list: categories
-            })
+            if(categories.length > 0){
+                res.json({
+                    successMsg: `${categories.length} categories were found.`,
+                    category_list: categories
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, no Categories have been created yet.`
+                })
+            }
         })
         .catch(err => {
             res.status(404).json({
