@@ -182,6 +182,12 @@ router.delete('/:feedId', (req, res) => {
                 then(() => {
                     successMsg: `You have deleted this Feed (id: ${req.params.feedId})`
                 })
+                .catch(deleteError => {
+                    res.status(403).json({
+                        errorMsg: `Please, make sure you have proper permissions to delete this Feed.`,
+                        error: deleteError
+                    })
+                })
         })
         .catch(err => {
             res.status(404).json({
