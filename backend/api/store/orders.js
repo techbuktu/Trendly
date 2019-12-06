@@ -59,16 +59,22 @@ router.get('/:orderId', (req, res) => {
  * @access Public 
  */
 router.post('/', (req, res) => {
-    const {user, product_list} = req.body 
+    const {cart, total} = req.body 
 
-    if(!user || !product_list){
+    if(!cart || !total){
         return res.json({
             errorMsg: `Please, send all required fields' data.`
         })
     }
 
+    if(cart.product_list.length < 1){
+        return res.status(400).json({
+            errorMsg: `You can't place an order on an empty cart.`
+        })
+    }
+
     //Verify that this is not a duplicate Order
-    Order.findOne({ user, product_list})
+    Order.findOne({ cart, total})
         .then(order => {
             if(order){
                 res.status(400).json({
@@ -76,7 +82,7 @@ router.post('/', (req, res) => {
                 })
             }else {
                 const newOrder = new Order({
-                    user, product_list
+                    cart, total
                 })
 
                 newOrder.save()
