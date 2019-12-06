@@ -64,6 +64,8 @@ router.post('/', (req, res) => {
         })
     }
 
+    //Make sure this is not a duplicate 
+
     // Create a new Cart object from the data sent in by the client
     const newCart = new Cart({owner, product_list})
 
@@ -138,26 +140,33 @@ router.put('/:cartId', (req, res) => {
  */
 router.delete('/:cartId', (req, res) => {
     //Make sure this Cart exists
-    const cart = Cart.findOne({ _id: req.params.cartId})
-
-    if(!cart){
-        res.status(400).json({
-            errorMsg: `A Cart with id (${req.params.cartId}) does not exist.`
+    Cart.findOne({ _id: req.params.cartId})
+        .then(cart => {
+            if(!cart){
+                res.status(400).json({
+                    errorMsg: `A Cart with id (${req.params.cartId}) does not exist.`
+                })
+            }else {
+                cart.remove()
+                    .then(() => {
+                        res.json({
+                            successMsg: `You have successfully-deleted the Cart with id: ${req.params.cartId}`
+                        })
+                    })
+                    .catch(err => {
+                        res.status(403).json({
+                            errorMsg: `Cart could not be deleted. Make sure you have the proper permissions.`,
+                            error: err
+                        })
+                    })
+            }
         })
-    }else {
-        cart.remove()
-            .then(() => {
-                res.json({
-                    successMsg: `You have successfully-deleted the Cart with id: ${req.params.cartId}`
-                })
+        .catch(err => {
+            res.status(404).json({
+                errorMsg: `Something went wrong.`,
+                error: err
             })
-            .catch(err => {
-                res.status(403).json({
-                    errorMsg: `Cart could not be deleted. Make sure you have the proper permissions.`,
-                    error: err
-                })
-            })
-    }
+        })
 })
 
 module.exports = router 
