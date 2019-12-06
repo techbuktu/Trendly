@@ -150,7 +150,7 @@ router.put('/:categoryId', (req, res) => {
                                 })
                         }
                     })
-                    
+
             })
             .catch(err => {
                 res.status(404).json({
@@ -171,7 +171,7 @@ router.put('/:categoryId', (req, res) => {
  * @access Private
  */
 router.delete('/:categoryId', (req, res) => {
-    Editor.findOne({ _id: req.params.categoryId})
+    Category.findOne({ _id: req.params.categoryId})
         .then(category => {
             category.remove()
                 .then(() => {
