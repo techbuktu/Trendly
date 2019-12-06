@@ -5,7 +5,8 @@ const slug_generator = require('mongoose-slug-generator')
 
 const ProfileSchema = new Schema({
     user: {
-        Map
+        type: Map,
+        required: true
     },
     about: {
         type: String,

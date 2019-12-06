@@ -13,10 +13,16 @@ const Profile = require('../../models/profile/Profile')
 router.get('/', (req, res) => {
     Profile.find()
         .then(profiles => {
-            res.json({
-                successMsg: `${profiles.length} Profiles were found.`,
-                profile_list : profiles
-            })
+            if(profiles.length > 0){
+                res.json({
+                    successMsg: `${profiles.length} Profiles were found.`,
+                    profile_list : profiles
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, 0 Profiles were found.`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
@@ -33,9 +39,15 @@ router.get('/', (req, res) => {
 router.get('/:profileId', (req, res) => {
     Profile.findOne({ _id: req.params.profileId})
         .then(profile => {
-            res.json({
-                profile
-            })
+            if(profile){
+                return res.json({
+                    profile
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `A Profile with id (${req.params.profileId}) does not exist.`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
@@ -75,8 +87,8 @@ router.post('/', (req, res) => {
                 })
                 newProfile.save()
                     .then(new_profile => {
-                        res.jsond({
-                            successMsg: 'You have created a new Profile with ID {new_profile._id}',
+                        res.json({
+                            successMsg: `You have created a new Profile with ID ${new_profile._id}`,
                             new_profile: new_profile
                         })
                     })
@@ -100,34 +112,38 @@ router.put('/:profileId', (req, res) => {
     //First: check to make sure a matching Profile instance exists
     Profile.findOne({ _id: req.params.profileId})
         .then(profile => {
+            
             //Grab the updated Profile fields
             const updatedFields = Object.keys(req.body);
 
             //Create an object out of the updated fields
             let profileUpdates = {}
-            updatedFields.map(field => profileUpdates[filed] = req.body[field])
+            updatedFields.map(field => profileUpdates[field] = req.body[field])
+
+            // Create a query to search the DB's 'profiles' collection
+            let query = { _id: req.params.profileId };
+
+            //Query the 'profiles' collection in the DB to update the matching Profile instance and send response to requesting client
+            Profile.updateOne(query, profileUpdates)
+                .then(success => {
+                    Profile.findOne({ _id: req.params.profileId})
+                        .then(updatedProfile => {
+                            res.json({
+                                successMsg: `Profile (id: ${req.params.profileId}) has been updated`,
+                                updated_profile: updatedProfile
+                            })
+                        })
+                })
+                .catch(updateError => {
+                    res.status(500).json({
+                        errorMsg: `Sorry, Profile (id: ${req.params.profileId}) could not be updated`,
+                        error: updateError
+                    })
+                })
+
         })
-
-        // Create a query to search the DB's 'profiles' collection
-        let query = { _id:req.params.profileId };
-
-        //Query the 'profiles' collection in the DB to update the matching Profile instance and send response to requesting client
-        Profile.updateOne(query, profileUpdates)
-            .then(updatedProfile => {
-                res.json({
-                    successMsg: `Profile (id: ${req.params.profileId}) has been updated`,
-                    updated_profile: updatedProfile
-                })
-            })
-            .catch(updateError => {
-                res.status(500).json({
-                    errorMsg: `Sorry, Profile (id: ${req.params.profileId}) could not be updates`,
-                    error: updateError
-                })
-            })
-
         .catch(err => {
-            res.status(400).jsond({
+            res.status(400).json({
                 errorMsg: `This Profile (id: ${req.params.profileId}) was not found.`,
                 error: err
             })
