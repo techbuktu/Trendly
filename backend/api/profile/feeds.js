@@ -137,17 +137,28 @@ router.put('/:feedId', (req, res) => {
 
             //Initialize an object with fields to update
             let feedUpdates = {}
-            updatedFields.mao(field => {
+            updatedFields.map(field => {
                 feedUpdates[field] = req.body[field]
             })
 
             let query = {_id: req.params.feedId}
 
             Feed.updateOne(query, feedUpdates)
-                .then(updatedFeed => {
-                    res.json({
-                        updated_feed: updatedFeed
-                    })
+                .then(updateSuccess => {
+                   if(updateSuccess){
+                       Feed.findById(req.params.feedId)
+                        .then(updatedFeed => {
+                            if(updatedFeed){
+                                return res.json({
+                                    updated_feed: updatedFeed
+                                })
+                            }else {
+                                res.status(500).json({
+                                    errorMsg: 'Something went very wrond, sire! :('
+                                })
+                            }
+                        })
+                   }
                 })
                 .catch(updateError => {
                     res.status(500).json({
