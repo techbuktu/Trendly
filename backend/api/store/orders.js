@@ -40,9 +40,15 @@ router.get('/:orderId', (req, res) => {
     const orderId = req.params.orderId 
     Order.findById(orderId)
         .then(order => {
-            res.json({
-                order: order
-            })
+            if(order){
+                res.json({
+                    order: order
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `An Order with id (${req.params.orderId}) does not exist.`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
