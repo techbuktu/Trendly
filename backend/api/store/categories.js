@@ -38,9 +38,15 @@ router.get('/', (req, res) => {
 router.get('/:categoryId', (req, res) => {
     Category.findOne({_id: req.params.categoryId})
         .then(category => {
-            res.json({
-                category
-            })
+            if(category){
+                res.json({
+                    category
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, this Category does not exist.`
+                })
+            }
         })
         .catch(err => {
             res.status(404).json({
@@ -79,9 +85,11 @@ router.post('/', (req, res) => {
 
                 newCategory.save()
                     .then(new_category => {
-                        res.json({
-                            new_category
-                        })
+                        if(new_category){
+                            return res.json({
+                                new_category
+                            })
+                        }
                     })
                     .catch(err => {
                         res.status(400).json({
@@ -105,43 +113,56 @@ router.post('/', (req, res) => {
  * @access Private
  */
 router.put('/:categoryId', (req, res) => {
-    //Verify that category exists
-    Category.findOne({ _id: req.params.categoryId})
+    
+    //Get the updated Category fields sent by client
+    const updatedFields = Object.keys(req.body)
+
+    if(updatedFields.length> 0){
+        //Verify that category exists
+        Category.findOne({ _id: req.params.categoryId})
         .then(category => {
-
-            //Get the updated Category fields sent by client
-            const updatedFields = Object.keys(req.body)
-
-            //Create an update object to sent to the DB
-            let categoryUpdate = {}
-            updatedFields.map(field => {
-                categoryUpdate[field] = req.body[field]
-            })
-
-            //Create a query obj to query against the 'categories' collection in the DB
-            let query = {_id: req.params.categoryId}
-
-            //Update the Category in the DB and send response back to client
-            Category.updateOne(query, categoryUpdate)
-                .then(updatedCategory => {
-                    res.json({
-                        successMsg: `Category (id: ${req.params.categoryId}) has been updated.`,
-                        udated_category: updatedCategory
-                    })
+                //Create an update object to sent to the DB
+                let categoryUpdate = {}
+                updatedFields.map(field => {
+                    categoryUpdate[field] = req.body[field]
                 })
-                .catch(updateError => {
-                    res.status(500).json({
-                        errorMsg: `This Category (id: ${req.params.categoryId}) could not be updated.`,
-                        error: updateError
+
+                //Create a query obj to query against the 'categories' collection in the DB
+                let query = {_id: req.params.categoryId}
+
+                //Update the Category in the DB and send response back to client
+                Category.updateOne(query, categoryUpdate)
+                    .then(updateSuccess => {
+                        if(updateSuccess){
+                            Category.findById(req.params.categoryId)
+                                .then(updatedCategory => {
+                                    if(updatedCategory){
+                                        res.json({
+                                            successMsg: `Category (id: ${req.params.categoryId}) has been updated.`,
+                                            udated_category: updatedCategory
+                                        })
+                                    }else {
+                                        res.status(500).json({
+                                            errorMsg: `This Category (id: ${req.params.categoryId}) could not be updated.`,
+                                            error: updateError
+                                        })
+                                    }
+                                })
+                        }
                     })
-                })
-        })
-        .catch(err => {
-            res.status(404).json({
-                errorMsg: `Sorry, this category does not exist.`,
-                error: err
+                    
             })
+            .catch(err => {
+                res.status(404).json({
+                    errorMsg: `Sorry, this category does not exist.`,
+                    error: err
+                })
+            })
+    }else {
+        res.status(400).json({
+            errorMsg: `Please, the k-v pairs to update this Category with.`
         })
+    }
 })
 
 /**
