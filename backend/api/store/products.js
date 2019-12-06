@@ -39,9 +39,15 @@ router.get('/', (req, res) => {
 router.get('/:productId', (req, res) => {
     Product.findOne({ _id: req.params.productId})
         .then(product => {
-            res.json({
-                product: product
-            })
+            if(product){
+                res.json({
+                    product: product
+                })
+            } else{
+                res.status(404).json({
+                    errorMsg: `A Product with this id (${req.params.productId}) does not exist.`
+                })
+            }
         })
         .catch(err => {
             res.status(404).json({
