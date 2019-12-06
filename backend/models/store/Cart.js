@@ -8,7 +8,8 @@ const CartSchema = new Schema({
         required: true
     },
     product_list: {
-        type: Array
+        type: Array,
+        default: []
     },
     createdDate: {
         type: Date,
