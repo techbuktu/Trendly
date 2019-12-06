@@ -12,10 +12,16 @@ const Category = require('../../models/store/Category')
 router.get('/', (req, res) => {
     Product.find()
         .then(products => {
-            res.json({
-                successMsg: `${products.length} Products were found.`,
-                product_list: products
-            })
+            if(products.length > 0){
+                res.json({
+                    successMsg: `${products.length} Products were found.`,
+                    product_list: products
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, no Products have been added yet.`
+                })
+            }
         })
         .catch(err => {
             res.status(404).json({
@@ -53,10 +59,10 @@ router.get('/:productId', (req, res) => {
  */
 router.post('/', (req, res) => {
     //Get the key-value items from the req.body object
-    const {name, category, imageUrl, price} = req.body 
+    const {name, description, category, imageUrl, price} = req.body 
 
     //Verify that all required fields were sent by client.
-    if(!name || !category || !imageUrl || !price){
+    if(!name || !category || !imageUrl || !price || !description){
         return res.status(400).json({
             errorMsg: `Please, supply all required for the new Product.`
         })
@@ -72,7 +78,7 @@ router.post('/', (req, res) => {
             }else {
                 // Create a new Product instance using date supplied by the client
                 const newProduct = new Product({
-                    name, category, imageUrl, price
+                    name, description, category, imageUrl, price
                 })
 
                 newProduct.save()

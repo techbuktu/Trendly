@@ -8,7 +8,8 @@ const ProductSchema = new Schema({
         required: true
     },
     category: {
-        type: String
+        type: Map,
+        required: true
     },
     imageUrl: {
         type: String,
@@ -20,6 +21,10 @@ const ProductSchema = new Schema({
     },
     price: {
         type: Number,
+        required: true
+    },
+    description: {
+        type: String,
         required: true
     }
 })
