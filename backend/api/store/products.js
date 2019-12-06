@@ -132,11 +132,20 @@ router.put('/:productId', (req, res) => {
 
             //Update the matching Product item in the DB
             Product.updateOne(productQuery, productUpdates)
-                .then(updatedProduct => {
-                    res.json({
-                        successMsg: `This Product(id: ${updatedProduct._id}) has been updated.`,
-                        updated_product: updatedProduct
-                    })
+                .then(updateSuccess => {
+                    if(updateSuccess){
+                        Product.findById(req.params.productId)
+                            .then(updatedProduct => {
+                                res.json({
+                                    successMsg: `This Product(id: ${updatedProduct._id}) has been updated.`,
+                                    updated_product: updatedProduct
+                                })
+                            })
+                    }else {
+                        res.status(400).json({
+                            errorMsg: `Sorry, something went wrong. Please, check your data.`
+                        })
+                    }
                 })
                 .catch(err => {
                     res.status(500).json({
