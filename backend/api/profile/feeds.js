@@ -49,9 +49,15 @@ router.get('/for/:profileId', (req, res) => {
 router.get('/:feedId', (req, res) => {
     Feed.findOne({ _id: req.params.feedId})
         .then(feed => {
-            res.json({
-                feed: feed
-            })
+            if(feed){
+                res.json({
+                    feed: feed
+                })
+            }else {
+                res.status(404).json({
+                    errorMsg: `Sorry, this Feed could not be found.`
+                })
+            }
         })
         .catch(err => {
             res.status(400).json({
