@@ -6,6 +6,7 @@ import OrderApi from '../../api/store/OrderApi'
 class Order extends Component {
     constructor(props){
         super(props)
+        
         this.state = {
             _id: 1,
             product_list : [
