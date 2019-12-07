@@ -34,7 +34,7 @@ class Register extends Component {
     submitForm(){
         if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.email === '') return
         const new_user_obj = {}
-        //UserApi.register(new_user_obj)
+        //UserApi.createUser(new_user_obj)
         console.log('form submitted...')
         new_user_obj["firstName"] = this.state.firstName
         new_user_obj["lastName"] = this.state.lastName
@@ -43,13 +43,13 @@ class Register extends Component {
         console.log(`new_user_obj: ${new_user_obj.firstName}`)
 
         //Submit valid form data using UserApi 
-        UserApi.register(new_user_obj)
+        UserApi.createUser(JSON.stringify(new_user_obj))
             .then(res => {
                 //navigate to new User/Profile page.
-                console.log('UserApi.register() success!')
+                console.log('UserApi.createUser() success!')
             })
             .catch(err => {
-                console.log('UserApi.register() error')
+                console.log('UserApi.createUser() error')
             })
             .finally()
     }
