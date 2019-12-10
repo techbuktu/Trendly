@@ -8,7 +8,7 @@ class CategoryList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            category_list: [
+            /**category_list: [
                 {'name': 'Clothing', 
                 '_id':1 
                 },
@@ -18,12 +18,27 @@ class CategoryList extends Component {
                 {'name': 'Coats', 
                 '_id':3 
                 },
-            ]
+            ] */
+            category_list: []
         }
     }
 
+    componentDidMount(){
+        this.getCategoryList()
+    }
+
     getCategoryList(){
-        //Use CategoryApi.getAllCategories() and pass res to state.category_list
+        CategoryApi.getAllCategories()
+            .then(categories => {
+                this.setState({
+                    category_list: categories
+                }, () => {
+                    console.log(`this.state.category_list: ${categories}`)
+                })
+            })
+            .catch(err => {
+                console.log(`CategoryApi.getAllCategories() error: ${err}`)
+            })
     }
 
     render() {
