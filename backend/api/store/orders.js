@@ -3,7 +3,6 @@ const router = express.Router()
 
 const Order = require('../../models/store/Order')
 
-
 /**
  * @route GET api/orders
  * @desc  Get a list of all Order instances.
