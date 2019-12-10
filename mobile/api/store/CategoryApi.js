@@ -1,4 +1,4 @@
-import Axios from '../'
+import Axios from '../index'
 
 class CategoryApi {
     /**
