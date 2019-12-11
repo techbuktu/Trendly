@@ -28,13 +28,21 @@ class Home extends Component {
     }
 
     render() {
-        const productListUI = this.state.product_list.map(product => {
-            return (
+        if(this.state.product_list){
+            const productListUI = this.state.product_list.map(product => {
+                return (
+                    <View>
+                        <Text> Product => {product.name}: {product.price} </Text>
+                    </View>
+                )
+            })
+        }else {
+            const productListUI = (
                 <View>
-                    <Text> Product => {product.name}: {product.price} </Text>
+                    <Text> No products to list.</Text>
                 </View>
             )
-        })
+        }
         if(this.state.product_list){
             return (
                 <React.Fragment>
