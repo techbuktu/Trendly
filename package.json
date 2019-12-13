@@ -4,12 +4,12 @@
   "description": "A Full Stack MERN-based project with a React Native mobile client",
   "main": "Server.js",
   "scripts": {
-    "start": "node Server.js",
+    "start": "node ./backend/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon Server.js",
-    "client": "npm start --prefix ../frontend",
-    "android": "npm run android --prefix ../mobile",
-    "ios": "npm run ios --prefix ../mobile",
+    "server": "nodemon ./backend/Server.js",
+    "client": "npm start --prefix ./frontend",
+    "android": "npm run android --prefix ./mobile",
+    "ios": "npm run ios --prefix ./mobile",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "dev-android": "concurrently \"npm run server\" \"npm run android\" ",
     "dev-ios": "concurrently \"npm run server\" \"npm run ios\" "
