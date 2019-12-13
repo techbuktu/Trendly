@@ -32,12 +32,36 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @route GET api/feeds/for/:profileId
+ * @route GET api/feeds/by/:profileId
  * @desc  Get all matching feeds posted by Profile instance with matching :profileId
  * @access Public 
  */
 router.get('/for/:profileId', (req, res) => {
-    
+    const {profileId} = req.params
+
+    Profile.findOne({_id: profileId})
+        .then(profile => {
+            if(profile){
+                Feed.find({profileId})
+                    .then(feeds => {
+                        if(feeds.length > 0){
+                            res.json({
+                                successMsg: `${feeds.length} Feeds were found by this Profile.`,
+                                feeds: feeds
+                            })
+                        }else {
+                            res.status(404).json({
+                                errorMsg: `No Feeds have been posted by this Profile.`
+                            })
+                        }
+                    })
+            }else {
+                res.status(404).json({
+                    errorMsg: `This Profile could not be found.`
+                })
+            }
+        })
+
 
 })
 
