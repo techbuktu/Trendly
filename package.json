@@ -4,9 +4,9 @@
   "description": "A Full Stack MERN-based project with a React Native mobile client",
   "main": "Server.js",
   "scripts": {
-    "start": "node backend/Server.js",
+    "start": "node server/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon ./backend/Server.js",
+    "server": "nodemon ./server/Server.js",
     "client": "npm start --prefix ./frontend",
     "android": "npm run android --prefix ./mobile",
     "ios": "npm run ios --prefix ./mobile",
