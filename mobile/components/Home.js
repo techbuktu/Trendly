@@ -8,16 +8,23 @@ class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
-            product_list: []
+            product_list: [
+                {'name': 'Product One','price': 23.77}, 
+                {'name': 'Product Two', 'price': 47.97}
+            ]
         }
     }
 
     componentDidMount(){
         console.log(`homeStyles obj: ${homeStyles}`)
+        this.getAllProducts()
+    }
+
+    getAllProducts(){
         ProductApi.getAllProducts()
             .then(res => {
                 this.setState({
-                    product_list: res.data
+                    product_list: res.data.product_list
                 }, () => {
                     console.log(`this.state.product_list: ${this.state.product_list}`)
                 })
@@ -29,7 +36,7 @@ class Home extends Component {
 
     render() {
         if(this.state.product_list){
-            const productListUI = this.state.product_list.map(product => {
+            let productListUI = this.state.product_list.map(product => {
                 return (
                     <View>
                         <Text> Product => {product.name}: {product.price} </Text>
@@ -37,31 +44,25 @@ class Home extends Component {
                 )
             })
         }else {
-            const productListUI = (
+            let productListUI = (
                 <View>
                     <Text> No products to list.</Text>
                 </View>
             )
         }
-        if(this.state.product_list){
-            return (
-                <React.Fragment>
-                    
-                    <View style={ homeStyles.title }>
-                        <Text> 
-                            Home component, with 'links' to other sections and/OR list of 
-                            currently-available (Product.isAvailable)
-                            products.
-                        </Text>
-                    </View>
-                    {productListUI}
-                </React.Fragment>
-            )
-        } else {
-            <View style={ homeStyles.title }>
-                <Text> No products to show yet.</Text>
-            </View>
-        }
+        return (
+            <React.Fragment>
+                
+                <View style={ homeStyles.title }>
+                    <Text> 
+                        Home component, with 'links' to other sections and/OR list of 
+                        currently-available (Product.isAvailable)
+                        products.
+                    </Text>
+                </View>
+            {this.productListUI}
+            </React.Fragment>
+        )
     }
 }
 
