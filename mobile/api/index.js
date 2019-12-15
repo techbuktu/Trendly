@@ -10,7 +10,7 @@ const RequestHeaders = {
 const Axios = axios.create({
 	//baseUrl: 'http://172.18.204.15/:5000/api',
 	//baseURL: 'http://localhost:5000/api',
-	baseURL: 'http://172.18.206.209:5000/api',
+	baseURL: 'http://167.172.29.200/api',
 	headers: RequestHeaders,
 })
 
