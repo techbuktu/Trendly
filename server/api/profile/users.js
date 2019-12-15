@@ -43,7 +43,14 @@ router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId })
         .then(user => {
             if(user){
-                return res.status(200).json({user: user})
+                return res.status(200).json({
+                    user: {
+                        _id: user._id,
+                        email: user.email,
+                        firstName: user.firstName,
+                        lastName: user.lastName
+                    }
+                })
             }else {
                 res.status(404).json({
                     errorMsg: `A User with this id (${req.params.userId} does not exist.)`
