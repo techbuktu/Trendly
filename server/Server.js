@@ -40,7 +40,7 @@ app.use('/api/orders', require('./api/store/orders'))
 // MongoDB configurations && integrations
 const mongoDBUrl = "mongodb://127.0.0.1:27017/trendly"
 
-mongoose.connect(MongoURI,
+mongoose.connect(mongoDBUrl,
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
@@ -54,10 +54,10 @@ const db = mongoose.connection
 
 db
 .once('open', () => {
-    console.log('Remote MongoDB instance connected')
+    console.log('Local MongoDB instance connected')
 })
 .on('error', err => {
-    console.log(`MongoDB connection error: ${err}`)
+    console.log(`Local MongoDB connection error: ${err}`)
 })
 
 const PORT = process.env.PORT || 5000
