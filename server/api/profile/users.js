@@ -107,7 +107,7 @@ router.post('/', (req, res) => {
                         }
                         //Sign the JWT token 
                         jwt.sign(
-                            { id: new_user.id},
+                            { id: new_user._id},
                             //config.get('jwtSecret'),
                             config.jwtSecret,
                             { expiresIn: 3600 },

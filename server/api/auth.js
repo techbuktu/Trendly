@@ -55,7 +55,7 @@ router.get('/login', (req, res) => {
                                 };
                                 //If JWT signing is successful, return API response with new user and token data
                                 res.json({
-                                    successMessage: 'Congrats! :) You have sucessfully created a new user.',
+                                    successMessage: 'Congrats! :) You have sucessfully logged in.',
                                     auth_token: token,
                                     user: {
                                         id: authUser.id,
