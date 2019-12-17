@@ -125,9 +125,9 @@ router.post('/', (req, res) => {
                                         id: new_user.id,
                                         firstName: new_user.firstName,
                                         lastName: new_user.lastName,
-                                        email: new_user.email,
-                                        auth_token: token
-                                    }
+                                        email: new_user.email
+                                    },
+                                    auth_token: token
                                 })
                             }
                         )

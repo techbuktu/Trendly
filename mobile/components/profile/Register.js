@@ -14,7 +14,9 @@ class Register extends Component {
             lastName: "",
             email: "",
             password: "",
-            new_user: {}
+            about: "",
+            profileImage: "/static/image.jpeq", //Change later for fileupload
+            new_user: {},
         },
 
         this.submitForm = this.submitForm.bind(this)
@@ -51,7 +53,7 @@ class Register extends Component {
                 this.setState({
                     new_user: res.data.new_user
                 }, () => {
-                    console.log(`this.state.new: ${this.state.new_user.firstName}: ${res.data.auth_token}`);
+                    console.log(`this.state.new_user: ${this.state.new_user.firstName}: ${res.data.auth_token}`);
                     this.autoCreateProfile()
                 })
                 
@@ -64,8 +66,14 @@ class Register extends Component {
 
     autoCreateProfile(){
         //Call ProfileApi.newProfile()....
-        const newUserJson = JSON.stringify(this.state.new_user)
-        ProfileApi.newProfile(newUserJson)
+        //const newUserJson = JSON.stringify(this.state.new_user)
+        const newProfile = {
+            user: this.state.new_user,
+            about: this.state.about,
+            profileImage: this.state.profileImage
+        }
+        let newProfileObjJson = JSON.stringify(newProfile)
+        ProfileApi.newProfile(newProfileObjJson)
             .then(res => {
                 console.log(`New Profile: ${res.data.new_profile}`)
             })
@@ -105,6 +113,12 @@ class Register extends Component {
                     placeholder="*******"
                     onChangeText = {value => this.onChangeText('password', value)}
                     
+                />
+                <TextInput
+                    style={styles.inputBox}
+                    value={this.state.about}
+                    placeholder="A little about me"
+                    onChangeText = {value => this.onChangeText('about', value)}
                 />
                 <View style={styles.submitButton}>
                     <TouchableHighlight
