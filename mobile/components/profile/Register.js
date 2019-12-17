@@ -13,7 +13,8 @@ class Register extends Component {
             firstName: "",
             lastName: "",
             email: "",
-            password: ""
+            password: "",
+            new_user: {}
         },
 
         this.submitForm = this.submitForm.bind(this)
@@ -47,11 +48,30 @@ class Register extends Component {
             .then(res => {
                 //navigate to new User/Profile page.
                 console.log('UserApi.createUser() success!')
+                this.setState({
+                    new_user: res.data.new_user
+                }, () => {
+                    console.log(`this.state.new: ${this.state.new_user.firstName}: ${res.data.auth_token}`);
+                    this.autoCreateProfile()
+                })
+                
             })
             .catch(err => {
                 console.log('UserApi.createUser() error')
             })
             .finally()
+    }
+
+    autoCreateProfile(){
+        //Call ProfileApi.newProfile()....
+        const newUserJson = JSON.stringify(this.state.new_user)
+        ProfileApi.newProfile(newUserJson)
+            .then(res => {
+                console.log(`New Profile: ${res.data.new_profile}`)
+            })
+            .catch(err => {
+                console.log(`newProfile error: ${err.message.errorMsg}`)
+            })
     }
 
     render() {
