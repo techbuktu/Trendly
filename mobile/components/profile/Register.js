@@ -35,7 +35,7 @@ class Register extends Component {
     }
 
     submitForm(){
-        if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.email === '') return
+        if(this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.email === '' || this.state.about === '') return
         const new_user_obj = {}
         //UserApi.createUser(new_user_obj)
         console.log('form submitted...')
