@@ -214,12 +214,12 @@ router.get('/in/:categoryId', (req, res) => {
                 })
             }else {
                 //Get all Products in this Category 
-                Product.find({ category: category})
-                    .then(product_list => {
-                        if(product_list.length > 0){
+                Product.find({ "category._id": categoryId})
+                    .then(category_products => {
+                        if(category_products.length > 0){
                             res.json({
-                                successMsg: `${product_list.length} Products were found in this Category(id: ${categoryId})`,
-                                product_list: product_list
+                                successMsg: `${category_products.length} Products were found in this Category(id: ${categoryId})`,
+                                product_list: category_products
                             })
                         }else {
                             res.status(404).json({
