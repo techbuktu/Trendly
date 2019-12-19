@@ -8,23 +8,36 @@ class CategoryDetail extends Component {
     constructor(props){
         super(props)
         this.state ={
+            categoryId: "5df93bec31b61463016f1662", //Get from props later
+            category: {
+                active: true,
+                _id: "5df93bec31b61463016f1662",
+                name: "Suits",
+                description: "Suits for the everyday gentleman.",
+                addedDate: "2019-12-17T20:34:52.812Z",
+                __v: 0
+            },
             product_list : [
-                {   'name': 'Product One',
-                    '_id': 1
-                },
-                {   'name': 'Product Two',
-                    '_id': 2
-                },
-                {   'name': 'Product Three',
-                    '_id': 3
-                }
+                
             ]
         }
     }
 
+    componentDidMount(){
+        this.getProductList()
+    }
+
     getProductList(){
-        //Use ProductApi.getCategoryProducts()
-        // set product_list to data.product_list
+        ProductApi.getProductsinCategory(this.state.category._id)
+            .then(res => {
+                this.setState({
+                    product_list: res.data.product_list
+                }, () => {
+                    console.log(`this.state.product_list: ${this.state.product_list}`)
+                })
+            })
+            .catch( err => console.log(`ProductApi.getAllProducts() err: ${err}`))
+            .finally(() => console.log('ProductApi.getAllProducts() done running...'))
     }
 
     renderItem = ({item}) => {
@@ -42,7 +55,7 @@ class CategoryDetail extends Component {
             <React.Fragment>
                 <View>
                     <Text style={styles.listHeader}>
-                        List of products in this category. 
+                        List of products in the {this.state.category.name} category. 
                     </Text>
                 </View>
                 <FlatList 

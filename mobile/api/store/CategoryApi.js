@@ -5,15 +5,15 @@ class CategoryApi {
      * Make CRUD API calls against the backend Category REST endpoint at /api/store/categories
      */
 
-     static getAllCategories(){
+    static getAllCategories(){
          return Axios.get(`/categories`)
      }
 
-     static newCategory(new_category_object){
+    static newCategory(new_category_object){
          return Axios.post(`/categories`, new_category_object)
      }
 
-     static getCategory(category_id){
+    static getCategory(category_id){
          return Axios.get(`/categories/${category_id}`)
      }
 
