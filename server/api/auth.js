@@ -17,7 +17,7 @@ router.get('/login', (req, res) => {
 
     if(!email || !password){
         return res.status(400).json({
-            errorMessage: `Please, supply both 'email' and 'password' fields to login`
+            errorMsg: `Please, supply both 'email' and 'password' fields to login`
         })
     }
     
@@ -25,7 +25,7 @@ router.get('/login', (req, res) => {
         .then(authUser => {
             if(!authUser){
                 return res.status(400).json({
-                    errorMessage: `A matching User with this email does not exist.`
+                    errorMsg: `A matching User with this email does not exist.`
                 })
             }
             
@@ -33,29 +33,29 @@ router.get('/login', (req, res) => {
             bcrypt.compare(password, authUser.password)
                 .then(isMatch => {
 
-                    //If client-supplied does not match, return a helpful errorMessage
+                    //If client-supplied does not match, return a helpful errorMsg
                     //If password matches, sign and return user{username, id} and 'auth_token' to client
                     //Sign the JWT token
                     if(!isMatch){
                         return res.status(400).json({
-                            errorMessage: `Password does not match. Please, check and try again.`
+                            errorMsg: `Password does not match. Please, check and try again.`
                         })
                     }
                         jwt.sign(
                             { id: authUser.id},
                             //config.get('jwtSecret'),
                             config.jwtSecret,
-                            { expiresIn: 3600 },
+                            { expiresIn: 3600 * 24 * 30 },
                             (err, token) => {
                                 if(err){
                                     return res.status(400).json({
-                                        errorMessage: `A token could not be generated for this user.`,
+                                        errorMsg: `A token could not be generated for this user.`,
                                         tokenError: err 
                                     })
                                 };
                                 //If JWT signing is successful, return API response with new user and token data
                                 res.json({
-                                    successMessage: 'Congrats! :) You have sucessfully logged in.',
+                                    successMsg: 'Congrats! :) You have sucessfully logged in.',
                                     auth_token: token,
                                     user: {
                                         id: authUser.id,
@@ -69,7 +69,7 @@ router.get('/login', (req, res) => {
                 })
                 .catch(err => {
                     res.status(400).json({
-                        errorMessage: err
+                        errorMsg: err
                     })
                 })
                 

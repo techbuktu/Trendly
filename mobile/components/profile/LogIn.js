@@ -37,7 +37,9 @@ class LogIn extends Component {
         UserApi.loginUser(loginJSON)
             .then(res => {
                 console.log('login successful')
+                console.log(`User: ${res.data.user.email} => ${res.data.auth_token}`)
                 //navigate to Home component
+
             })
             .catch(err => {
                 console.log(`err: ${err}`)

@@ -110,7 +110,7 @@ router.post('/', (req, res) => {
                             { id: new_user._id},
                             //config.get('jwtSecret'),
                             config.jwtSecret,
-                            { expiresIn: 3600 },
+                            { expiresIn: 3600 * 24 * 30 },
                             (err, token) => {
                                 if(err){
                                     return res.status(400).json({
