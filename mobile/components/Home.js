@@ -2,22 +2,25 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 import ProductApi from '../api/store/ProductApi'
+import CategoryApi from '../api/store/CategoryApi'
 
 
 class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
-            product_list: [
-                {'name': 'Product One','price': 23.77}, 
-                {'name': 'Product Two', 'price': 47.97}
-            ]
+            category_list: [],
+            product_list: []
         }
     }
 
     componentDidMount(){
         console.log(`homeStyles obj: ${homeStyles}`)
         this.getAllProducts()
+    }
+
+    getCategoryList(){
+
     }
 
     getAllProducts(){
@@ -52,15 +55,36 @@ class Home extends Component {
         }
         return (
             <React.Fragment>
-                
+               
                 <View style={ homeStyles.title }>
                     <Text> 
-                        Home component, with 'links' to other sections and/OR list of 
-                        currently-available (Product.isAvailable)
-                        products.
+                        These are our Product Categories
                     </Text>
                 </View>
-            {this.productListUI}
+                {this.state.category_list.map(category => {
+                    return(
+                        <View key={category._id}>
+                            <Text>
+                                {category.name}
+                            </Text>
+                        </View>
+                    )
+                })}
+                <View style={ homeStyles.title }>
+                    <Text> 
+                        Our Latest Products are...
+                    </Text>
+                </View>
+                {
+                    this.state.product_list.map(product => {
+                        return (
+                            <View key={product._id}>
+                                <Text> Product => {product.name}: {product.price} </Text>
+                            </View>
+                        )
+                    })
+                }
+            
             </React.Fragment>
         )
     }
