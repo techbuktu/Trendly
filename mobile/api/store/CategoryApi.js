@@ -4,7 +4,7 @@ class CategoryApi {
     /**
      * Make CRUD API calls against the backend Category REST endpoint at /api/store/categories
      */
-
+    
      static getAllCategories(){
          return Axios.get(`/categories`)
      }
