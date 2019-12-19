@@ -11,7 +11,7 @@ const User = require('../models/profile/User')
  * @desc    User authenticates using email and password and gets sent back a JWT
  * @access  Public 
  */
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
     //Get user's email and password values sent from (web or mobile) client
     const {email, password} = req.body
 
