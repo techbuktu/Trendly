@@ -65,7 +65,12 @@ class Home extends Component {
         }
         return (
             <React.Fragment>
-               
+                <View>
+                    <Text> New Here? Register </Text>
+                </View>
+                <View>
+                    <Text> Have an Account> Login</Text>
+                </View>
                 <View style={ homeStyles.title }>
                     <Text> 
                         These are our Product Categories
