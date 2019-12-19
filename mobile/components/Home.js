@@ -15,12 +15,22 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        console.log(`homeStyles obj: ${homeStyles}`)
+        this.getCategoryList()
         this.getAllProducts()
     }
 
     getCategoryList(){
-
+        CategoryApi.getAllCategories()
+            .then(res => {
+                this.setState({
+                    category_list: res.data.category_list
+                }, () => {
+                    console.log(`this.state.category_list: ${this.state.category_list.length}`)
+                })
+            })
+            .catch(err => {
+                console.log(`CategoryApi.getAllCategories() error: ${err}`)
+            })
     }
 
     getAllProducts(){
