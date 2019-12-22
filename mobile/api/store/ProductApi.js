@@ -24,6 +24,10 @@ class ProductApi {
     static deleteProduct(product_id){
         return Axios.delete(`/products/${product_id}`)
     }
+
+    static getProductsinCategory(category_id){
+        return Axios.get(`/products/${category_id}`)
+    }
     
 }
 

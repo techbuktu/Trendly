@@ -3,6 +3,7 @@ import { FlatList, Text, View, StyleSheet  } from 'react-native'
 import PropTypes from 'prop-types'
 
 import CategoryApi from '../../api/store/CategoryApi'
+import ProductApi from '../../api/store/ProductApi'
 
 class CategoryDetail extends Component {
     constructor(props){
