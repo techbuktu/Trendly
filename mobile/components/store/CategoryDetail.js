@@ -34,7 +34,7 @@ class CategoryDetail extends Component {
                 this.setState({
                     product_list: res.data.product_list
                 }, () => {
-                    console.log(`this.state.product_list: ${this.state.product_list}`)
+                    console.log(`this.state.product_list: ${this.state.product_list.length}`)
                 })
             })
             .catch( err => console.log(`ProductApi.getAllProducts() err: ${err}`))
@@ -43,7 +43,7 @@ class CategoryDetail extends Component {
 
     renderItem = ({item}) => {
         return (
-        <Text onPress={{}}> {item.name} : $ {item._id} </Text>
+        <Text onPress={{}}> {item.name} : $ {item.price} </Text>
         )
     }
 

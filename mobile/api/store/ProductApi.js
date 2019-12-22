@@ -26,7 +26,7 @@ class ProductApi {
     }
 
     static getProductsinCategory(category_id){
-        return Axios.get(`/products/${category_id}`)
+        return Axios.get(`/products/in/${category_id}`)
     }
     
 }
