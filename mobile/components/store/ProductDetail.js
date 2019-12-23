@@ -6,13 +6,17 @@ import { Text, View, StyleSheet, Image,
 import PropTypes from 'prop-types'
 
 import ProductApi from '../../api/store/ProductApi'
+import CartApi from '../../api/store/CartApi'
 
 class ProductDetail extends Component {
     constructor(props){
         super(props)
         this.state = {
             product_id: "5df93d8c31b61463016f1667",
-            product: {}
+            owner: "5df9376631b61463016f164f", //Remove after JWT auth setup
+            product: {},
+            new_cart: {},
+            new_cart_error: ""
         }
     }
 
@@ -37,10 +41,33 @@ class ProductDetail extends Component {
     }
 
     addToCart(){
+        //Later: Move addtoCart() to top-level App() component and access as a prop?
+
         //If Cart; add to its product_list; 
         // else => Create new Cart with this product in its product_list []
+        let product_list = []
+        product_list.push(this.state.product)
+        const newCart = {
+            owner: this.state.owner,
+            product_list: product_list
+        }
+        let newCartJson = JSON.stringify(newCart)
+        CartApi.newCart(newCartJson)
+            .then(res => {
+                this.setState({
+                    cart: res.data.new_cart 
+                }, () => {
+                    console.log('Product added to Cart!')
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    new_cart_error: err.errorMsg
+                }, () => {
+                    console.log(`new_cart_error: ${this.new_cart_error}`)
+                })
+            })
         //Cart.update here with this product in Cart.product_list
-        console.log('Product added to Cart!')
     }
 
     likeProduct(){
@@ -67,7 +94,7 @@ class ProductDetail extends Component {
                         ${this.state.product.price}
                     </Text>
                 </View>
-                <TouchableHighlight onPress={this.addToCart()}>
+                <TouchableHighlight onPress={this.addToCart}>
                     <Button title="Add to Cart" style={styles.orderButton}>
                     </Button>
                 </TouchableHighlight>
