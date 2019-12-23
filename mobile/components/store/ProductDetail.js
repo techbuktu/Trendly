@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet,
+import { Text, View, StyleSheet, Image,
         Button, TouchableHighlight
     } from 'react-native'
 
@@ -11,7 +11,8 @@ class ProductDetail extends Component {
     constructor(props){
         super(props)
         this.state = {
-            product_id: "5df93d8c31b61463016f1667"
+            product_id: "5df93d8c31b61463016f1667",
+            product: {}
         }
     }
 
@@ -41,15 +42,49 @@ class ProductDetail extends Component {
     
     render() {
         return (
-            <View>
-                <Text> Details about a Product. </Text>
-            </View>
+           <React.Fragment>
+                <View>
+                    <Text style={styles.productName}> {this.state.product.name} </Text>
+                </View>
+                <Image
+                        style={styles.image}
+                        source={{uri: 'http://jalloh.com/static/jalloh/photos/mjalloh.jpeg'}}
+                />
+                <View>
+                    <Text style={styles.description}>
+                        {this.state.product.description}
+                    </Text>
+                </View>
+                <View>
+                    <Text style={styles.price}>
+                        ${this.state.product.price}
+                    </Text>
+                </View>
+           </React.Fragment>
         )
     }
 }
 
 const styles = StyleSheet.create({
-
+    productName: {
+       textAlign: "center",
+       margin: 10
+    },
+    description: {
+        margin: 10,
+        textAlign: "center"
+    },
+    image: {
+        alignItems: "center",
+        marginLeft: 120,
+        height: 250,
+        width: 200
+    },
+    price: {
+        textAlign: "center",
+        fontSize: 20,
+        fontWeight: "bold"
+    }
 })
 
 ProductDetail.propTypes ={
