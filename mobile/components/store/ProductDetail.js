@@ -10,11 +10,25 @@ import ProductApi from '../../api/store/ProductApi'
 class ProductDetail extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            product_id: "5df93d8c31b61463016f1667"
+        }
     }
 
     componentDidMount(){
-        //ProductApi.getProductDetails()
-        // or get this from this.props from parent CategoryDetail
+        // or get this from this.props from parent CategoryDetail afterwards
+        ProductApi.getProduct(this.state.product_id)
+            .then(res => {
+                this.setState({
+                    product: res.data.product
+                }, () => {
+                    console.log(`Product name: ${this.state.product.name}`)
+                })
+            })
+            .catch(err => {
+                console.log(`Error: ${err.errorMsg}`)
+            })
+
     }
 
     orderProduct(){
