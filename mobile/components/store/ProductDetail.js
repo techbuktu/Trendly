@@ -36,6 +36,13 @@ class ProductDetail extends Component {
         //Use OrderApi.buyProduct(product_id, user_id)
     }
 
+    addToCart(){
+        //If Cart; add to its product_list; 
+        // else => Create new Cart with this product in its product_list []
+        //Cart.update here with this product in Cart.product_list
+        console.log('Product added to Cart!')
+    }
+
     likeProduct(){
         //LikeApi.likeProduct(product_id, user_id)
     }
@@ -60,6 +67,10 @@ class ProductDetail extends Component {
                         ${this.state.product.price}
                     </Text>
                 </View>
+                <TouchableHighlight onPress={this.addToCart()}>
+                    <Button title="Add to Cart" style={styles.orderButton}>
+                    </Button>
+                </TouchableHighlight>
            </React.Fragment>
         )
     }
@@ -84,6 +95,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 20,
         fontWeight: "bold"
+    },
+    orderButton: {
+        marginLeft: 20
     }
 })
 
