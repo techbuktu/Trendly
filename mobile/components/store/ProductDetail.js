@@ -18,6 +18,8 @@ class ProductDetail extends Component {
             new_cart: {},
             new_cart_error: ""
         }
+
+        this.addToCart = this.addToCart.bind(this)
     }
 
     componentDidMount(){
@@ -40,17 +42,31 @@ class ProductDetail extends Component {
         //Use OrderApi.buyProduct(product_id, user_id)
     }
 
+    createNewCart(){
+        let newCartObj = {
+            owner: this.state.owner,
+            product_list: [this.state.product]
+        }
+
+        CartApi.newCart(JSON.stringify(newCartObj))
+            .then(res => {
+                console.log(`Newly-created cart: ${res.data.new_cart}`)
+            })
+            .catch(err => {
+                console.log(`New cart creation error:${err.errorMsg}`)
+
+            })
+    }
+
     addToCart(){
         //Later: Move addtoCart() to top-level App() component and access as a prop?
 
         //If Cart; add to its product_list; 
-        // else => Create new Cart with this product in its product_list []
-        let product_list = []
-        product_list.push(this.state.product)
-        const newCart = {
-            owner: this.state.owner,
-            product_list: product_list
-        }
+        // else: Create new Cart with this product in its product_list []
+
+        this.createNewCart()
+        
+        /**
         let newCartJson = JSON.stringify(newCart)
         CartApi.newCart(newCartJson)
             .then(res => {
@@ -68,6 +84,7 @@ class ProductDetail extends Component {
                 })
             })
         //Cart.update here with this product in Cart.product_list
+         */
     }
 
     likeProduct(){

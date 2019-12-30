@@ -9,7 +9,7 @@ import productsNav from './productsNav'
 export const BottomTabNav = createBottomTabNavigator({
         Home: {screen: Home},
         Categories: {screen: productsNav},
-        Me: { screen: profileNav }
+        //Me: { screen: profileNav }
     },
     {
         initialRouteName: 'Home',
