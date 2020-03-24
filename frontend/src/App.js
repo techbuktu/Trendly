@@ -2,7 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+//Import base/app-wide UI components
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import Home from './components/layout/Header'
+
+//Import profile-related components
+
+//Import Store-related components
+
+
 
 function App() {
   return (
@@ -11,6 +21,8 @@ function App() {
           <header className="App-header">
             <Header />
           </header>
+
+          <Footer />
         </div>
     </Router>
   );
