@@ -34,6 +34,13 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route path="/login" component={LogIn} />
           <Route exact path="/:profileLink" component={ProfileDetail} />
+
+          <Route exact path="/categories" component={CategoryList} />
+          <Route path="/categories/:categoryLink" component={CategoryDetail} />
+          <Route path="/products/:productLink" component={ProductDetail} />
+          <Route path="/:userLink/cart" component={Cart} />
+          <Route exact path="/:userLink/orders" component={OrderList} />
+          <Route path="/:userLink/orders/:orderLink" component={Order} />
           <Footer />
         </div>
     </Router>
