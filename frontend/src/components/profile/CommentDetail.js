@@ -9,7 +9,7 @@ export class CommentDetail extends Component {
     render() {
         return (
             <div>
-                
+                Details of this comment: poster, body, commentDate 
             </div>
         )
     }

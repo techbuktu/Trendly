@@ -11,7 +11,10 @@ class Home extends Component {
     render() {
         return (
             <div>
-                Home of the Trendly marketplace.
+                Home Component of the Trendly marketplace.
+                <p>
+                    Another short paragraph.
+                </p>
             </div>
         )
     }

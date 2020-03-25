@@ -9,7 +9,7 @@ export class ProfileDetail extends Component {
     render() {
         return (
             <div>
-                
+                Details about a user profile; based on the backend Profile model.
             </div>
         )
     }

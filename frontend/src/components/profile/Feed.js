@@ -9,7 +9,7 @@ class Feed extends Component {
     render() {
         return (
             <div>
-                
+                List of Comments/Updates in this Feed.
             </div>
         )
     }

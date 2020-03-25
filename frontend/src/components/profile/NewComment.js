@@ -9,7 +9,7 @@ export class NewComment extends Component {
     render() {
         return (
             <div>
-                
+                Form to create a new comment. Using fields from backend's Comment model.
             </div>
         )
     }
