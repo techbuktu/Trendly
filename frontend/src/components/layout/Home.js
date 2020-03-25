@@ -13,7 +13,7 @@ class Home extends Component {
             <div>
                 Home Component of the Trendly marketplace.
                 <p>
-                    Link to CategoryList and Register (and LogIn) 'pages'/routes.
+                    Check out our <Link to={`/categories`}>product categories</Link> to buy the products you want.
                 </p>
                 <p>
                     Another short paragraph.
