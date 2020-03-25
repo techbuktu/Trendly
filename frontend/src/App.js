@@ -31,7 +31,9 @@ function App() {
             <Header /> 
           </header>
           <Route exact path="/" component={Home} />
-         
+          <Route exact path="/register" component={Register} />
+          <Route path="/login" component={LogIn} />
+          <Route exact path="/:profileLink" component={ProfileDetail} />
           <Footer />
         </div>
     </Router>

@@ -13,6 +13,9 @@ class Home extends Component {
             <div>
                 Home Component of the Trendly marketplace.
                 <p>
+                    Link to CategoryList and Register (and LogIn) 'pages'/routes.
+                </p>
+                <p>
                     Another short paragraph.
                 </p>
             </div>
