@@ -11,7 +11,9 @@ class Home extends Component {
     render() {
         return (
             <div>
-                Home Component of the Trendly marketplace.
+                <p>
+                    Hey, if you are new here, please, take a minute to <Link to={`/register`}>register</Link> for an account.
+                </p>
                 <p>
                     Check out our <Link to={`/categories`}>product categories</Link> to buy the products you want.
                 </p>
