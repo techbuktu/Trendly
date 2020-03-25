@@ -9,7 +9,7 @@ class ProductDetail extends Component {
     render() {
         return (
             <div>
-                
+                Details about a Product available for sale. Taken from backend Product model's fields.
             </div>
         )
     }

@@ -9,7 +9,12 @@ class CategoryDetail extends Component {
     render() {
         return (
             <div>
-                
+                <p>
+                    Info about a Category object.
+                </p>
+                <p>
+                    List of available Products in this Category only.
+                </p>
             </div>
         )
     }

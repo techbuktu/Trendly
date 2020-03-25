@@ -9,7 +9,7 @@ class CategoryList extends Component {
     render() {
         return (
             <div>
-                
+                List of Product Categories available in this <strong>eStore.</strong>
             </div>
         )
     }

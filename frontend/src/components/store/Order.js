@@ -9,7 +9,10 @@ class Order extends Component {
     render() {
         return (
             <div>
-                
+                Record of a single Order made by this authenticated User.
+                <p>
+                    Contains the list of Products bought as part of this Order.
+                </p>
             </div>
         )
     }

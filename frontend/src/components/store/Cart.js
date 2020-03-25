@@ -9,7 +9,7 @@ class Cart extends Component {
     render() {
         return (
             <div>
-                
+                List of Products in a user's Cart.
             </div>
         )
     }

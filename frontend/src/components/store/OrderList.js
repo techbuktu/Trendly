@@ -9,7 +9,7 @@ class OrderList extends Component {
     render() {
         return (
             <div>
-                
+                List of individual Orders represented by purchases made by this User.
             </div>
         )
     }
