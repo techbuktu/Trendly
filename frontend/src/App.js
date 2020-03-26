@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route path="/login" component={LogIn} />
-          <Route path="/:profileLink" component={ProfileDetail} />
+          <Route exact path="/:profileLink" component={ProfileDetail} />
 
           <Route exact path="/categories" component={CategoryList} />
           <Route path="/categories/:categoryLink" component={CategoryDetail} />

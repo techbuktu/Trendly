@@ -64,4 +64,8 @@ class CategoryList extends Component {
     }
 }
 
+CategoryList.propTypes = {
+    category_list: PropTypes.array.isRequired
+}
+
 export default CategoryList

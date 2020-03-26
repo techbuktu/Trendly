@@ -8,18 +8,33 @@ class CategoryDetail extends Component {
 
     }
 
+    constructor(props){
+        this.state = {
+            category: {}
+        }
+    }
+
+   componentDidMount(){
+
+   }
+
+
     render() {
         return (
             <div>
-                <p>
-                    Info about a Category object.
-                </p>
+                <h3>
+                    {this.props.category.name}
+                </h3>
                 <p>
                     List of available Products in this Category only.
                 </p>
             </div>
         )
     }
+}
+
+CategoryDetail.propTypes = {
+    category: PropTypes.object.isRequired
 }
 
 export default CategoryDetail
