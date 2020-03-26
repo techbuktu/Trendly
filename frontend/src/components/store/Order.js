@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import OrderApi from '../../api/store/OrderApi'
 
 class Order extends Component {
     static propTypes = {

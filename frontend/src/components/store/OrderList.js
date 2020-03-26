@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import OrderApi from '../../api/store/OrderApi'
+import UserApi from '../../api/profile/UserApi'
 
 class OrderList extends Component {
     static propTypes = {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import CategoryApi from '../../api/store/CategoryApi'
 
 class CategoryList extends Component {
     static propTypes = {

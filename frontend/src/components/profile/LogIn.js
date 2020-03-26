@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import UserApi from '../../api/profile/UserApi'
 
 export class LogIn extends Component {
     render() {

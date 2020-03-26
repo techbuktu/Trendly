@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import CartApi from '../../api/store/CartApi'
 
 class Cart extends Component {
     static propTypes = {

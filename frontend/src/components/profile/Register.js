@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import UserApi from '../../api/profile/UserApi'
+import ProfileApi from '../../api/profile/Profile'
 
 class Register extends Component {
     render() {

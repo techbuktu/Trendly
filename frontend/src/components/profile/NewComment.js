@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import CommentApi from '../../api/profile/CommentApi'
 
 export class NewComment extends Component {
     static propTypes = {

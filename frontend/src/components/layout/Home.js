@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import CategoryApi from '../../api/store/CategoryApi'
 
 class Home extends Component {
     constructor(props){
