@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link, Redirect} from 'react-router-dom'
 import CategoryApi from '../../api/store/CategoryApi'
+import CategoryDetail from './CategoryDetail'
 
 class CategoryList extends Component {
     static propTypes = {
@@ -40,9 +41,11 @@ class CategoryList extends Component {
 
             const categoryUI = this.state.category_list.map(category => {
                 return(
-                    <li key={category._id}>
+                   <>
+                     <li key={category._id}>
                         <Link to={`/categories/${category._id}`}>{category.name}</Link>
                     </li>
+                   </>
                 )
             })
             
