@@ -68,7 +68,7 @@ class CategoryList extends Component {
 }
 
 CategoryList.propTypes = {
-    category_list: PropTypes.array.isRequired
+    category_list: PropTypes.array
 }
 
 export default CategoryList
