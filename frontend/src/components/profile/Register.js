@@ -12,7 +12,7 @@ class Register extends Component {
             lastName: "",
             email: "",
             password: "",
-            newUserObj : {}
+            newUserObj: {}
         }
         
         this.submitForm = this.submitForm.bind(this)
@@ -20,13 +20,31 @@ class Register extends Component {
     }
 
     submitForm(e){
+        e.preventDefault();
+        const newUserObj = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password
+        }
+        this.setState({ newUserObj }, () => {
+            const newUserJson = JSON.stringify(this.state.newUserObj)
+            UserApi.createUser(newUserJson)
+                .then(res => {
+                    console.log(`res.data.new_user: ${res.data.new_user.email}`)
+                })
+                .catch(err => console.log(`API error: ${err}`))
 
+            })
+        
     }
+    
 
     onChange(e){
-        let newUserObj = {}
-        newUserObj[e.target.name] = e.target.value
-        console.log(`newUserObj: ${newUserObj[e.target.name]}`)
+       
+       this.setState({
+           [e.target.name]: e.target.value
+       })
     }
 
     render() {
@@ -36,19 +54,19 @@ class Register extends Component {
                 <form onSubmit={this.submitForm}>
                     <p>
                         <label>First Name</label>
-                        <input type="text" name="firstName"  defaultValue={this.state.firstName} onChange={this.onChange} />
+                        <input type="text" name="firstName"  defaultValue="" onChange={this.onChange} />
                     </p>
                     <p>
                         <label>Last Name</label>
-                        <input type="text" name="lastName" defaultValue={this.state.lastName} onChange={this.onChange} />
+                        <input type="text" name="lastName" defaultValue="" onChange={this.onChange} />
                     </p>
                     <p>
                         <label>Email</label>
-                        <input type="email" name="email" defaultValue={this.state.email} onChange={this.onChange} />
+                        <input type="email" name="email" defaultValue="" onChange={this.onChange} />
                     </p>
                     <p>
                         <label>Password</label>
-                        <input type="password" name="password" defaultValue={this.state.password} onChange={this.onChange} />
+                        <input type="password" name="password" defaultValue="" onChange={this.onChange} />
                     </p>
                     <p>
                         <input type="submit" defaultValue="Register"/>
