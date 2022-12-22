@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "express-handlebars": "^3.1.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.7.12",
     "mongoose-slug-generator": "^1.0.4"
   },
